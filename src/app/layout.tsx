@@ -9,7 +9,10 @@ import { entertainmentNotice, siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = buildMetadata({
   title: "Uranai Garden｜毎日楽しめる占い・診断・おみくじ",
-  description: siteConfig.description
+  description: siteConfig.description,
+  verification: {
+    google: "RJvGN6LGUJqEPGGMLFMpFK9H2x8rEgyZcFpmG_smE2E"
+  }
 });
 
 export const viewport: Viewport = {

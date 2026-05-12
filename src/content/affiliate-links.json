@@ -1,0 +1,50 @@
+{
+  "disclosure": "この枠には広告・PRリンクが含まれます。",
+  "items": [
+    {
+      "id": "tarot-starter",
+      "category": "タロットカード",
+      "title": "初心者向けタロットカードセット",
+      "description": "解説書つきで1枚引きを始めやすい定番タイプ。",
+      "priceLabel": "2,000円台〜",
+      "badge": "初心者向け",
+      "url": "https://example.com/affiliate/tarot-starter"
+    },
+    {
+      "id": "fortune-book",
+      "category": "占い本",
+      "title": "毎日読める占い入門書",
+      "description": "星座・数秘・タロットを軽く学びたい人向け。",
+      "priceLabel": "1,500円台〜",
+      "badge": "読み物",
+      "url": "https://example.com/affiliate/fortune-book"
+    },
+    {
+      "id": "lucky-goods",
+      "category": "開運グッズ",
+      "title": "デスクに置ける開運モチーフ小物",
+      "description": "気分を整えるインテリアとして取り入れやすい小物。",
+      "priceLabel": "1,000円台〜",
+      "badge": "ギフト",
+      "url": "https://example.com/affiliate/lucky-goods"
+    },
+    {
+      "id": "planner",
+      "category": "手帳",
+      "title": "月のリズムで書ける手帳",
+      "description": "毎日の振り返りや願いごとのメモに使いやすい手帳。",
+      "priceLabel": "1,800円台〜",
+      "badge": "再訪問導線",
+      "url": "https://example.com/affiliate/planner"
+    },
+    {
+      "id": "perfume",
+      "category": "香水",
+      "title": "気分で選べるミニ香水セット",
+      "description": "ラッキーカラーや診断結果に合わせて楽しめる小容量タイプ。",
+      "priceLabel": "3,000円台〜",
+      "badge": "美容",
+      "url": "https://example.com/affiliate/perfume"
+    }
+  ]
+}

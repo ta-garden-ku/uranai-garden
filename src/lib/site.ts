@@ -17,6 +17,7 @@ export const mainNav = [
   { href: "/zodiac", label: "星座占い" },
   { href: "/tarot", label: "タロット" },
   { href: "/omikuji", label: "おみくじ" },
+  { href: "/sports", label: "スポーツ占い" },
   { href: "/dreams", label: "夢占い" },
   { href: "/articles", label: "記事" }
 ] as const;
@@ -25,6 +26,7 @@ export const popularLinks = [
   { href: "/today", title: "今日の運勢", label: "毎朝チェック" },
   { href: "/tarot", title: "タロット1枚引き", label: "SNSで人気" },
   { href: "/diagnosis/love", title: "恋愛タイプ診断", label: "診断" },
+  { href: "/sports", title: "スポーツ占い", label: "新着" },
   { href: "/dreams", title: "夢占い検索", label: "検索流入" },
   { href: "/lucky-color", title: "ラッキーカラー診断", label: "再訪問" }
 ] as const;

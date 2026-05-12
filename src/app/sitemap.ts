@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { articles, categories, dreams, zodiacSigns } from "@/lib/content";
+import { articles, categories, dreams, sportsFortunes, zodiacSigns } from "@/lib/content";
 import { siteConfig } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -15,6 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/diagnosis/personality",
     "/diagnosis/compatibility",
     "/dreams",
+    "/sports",
     "/lucky-color",
     "/lucky-item",
     "/articles",
@@ -28,6 +29,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const dynamicPaths = [
     ...zodiacSigns.map((item) => `/zodiac/${item.slug}`),
     ...dreams.map((item) => `/dreams/${item.slug}`),
+    ...sportsFortunes.map((item) => `/sports/${item.slug}`),
     ...articles.map((item) => `/articles/${item.slug}`),
     ...categories.map((item) => `/categories/${item.slug}`)
   ];

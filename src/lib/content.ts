@@ -43,6 +43,15 @@ export type Article = {
   related: string[];
 };
 
+export type SportsFortune = {
+  slug: string;
+  name: string;
+  description: string;
+  luckyAction: string;
+  luckyItem: string;
+  message: string;
+};
+
 export const zodiacSigns: ZodiacSign[] = [
   { slug: "aries", name: "牡羊座", period: "3/21〜4/19", element: "火" },
   { slug: "taurus", name: "牡牛座", period: "4/20〜5/20", element: "土" },
@@ -278,6 +287,57 @@ export const affiliateCategories = [
   "アクセサリー"
 ] as const;
 
+export const sportsFortunes: SportsFortune[] = [
+  {
+    slug: "baseball",
+    name: "野球占い",
+    description: "攻める日か、守りを固める日か。チームワークと集中力の流れを占います。",
+    luckyAction: "最初の一球を大切にする気持ちで、朝いちばんの予定を丁寧に始める",
+    luckyItem: "キャップ",
+    message: "今日は派手な一発より、確実な積み重ねが流れを作ります。"
+  },
+  {
+    slug: "soccer",
+    name: "サッカー占い",
+    description: "視野の広さ、パスのタイミング、チャンスを見つける力を占います。",
+    luckyAction: "周りの人の動きをよく見て、先回りの一言を添える",
+    luckyItem: "スニーカー",
+    message: "一人で突破しようとせず、良いパスを出すほど運が巡ります。"
+  },
+  {
+    slug: "basketball",
+    name: "バスケ占い",
+    description: "テンポ、切り替え、ここぞという場面の決断力を占います。",
+    luckyAction: "短い時間で区切って、集中と休憩をリズムよく入れる",
+    luckyItem: "スポーツタオル",
+    message: "流れが速い日ほど、焦らず足元を整えるとシュートが決まります。"
+  },
+  {
+    slug: "running",
+    name: "ランニング占い",
+    description: "自分のペース、継続力、気分の切り替えを占います。",
+    luckyAction: "5分だけ外の空気を吸って、気持ちをリセットする",
+    luckyItem: "水筒",
+    message: "比べるより、自分に合うペースを守ることが今日の開運です。"
+  },
+  {
+    slug: "tennis",
+    name: "テニス占い",
+    description: "受ける力、返す力、会話や判断のラリー運を占います。",
+    luckyAction: "返事を急がず、相手の言葉を一度受け止めてから返す",
+    luckyItem: "リストバンド",
+    message: "きれいに打ち返すより、続ける意識が良い関係を育てます。"
+  },
+  {
+    slug: "golf",
+    name: "ゴルフ占い",
+    description: "落ち着き、段取り、長い目で見る計画運を占います。",
+    luckyAction: "今日の目標を一つに絞り、余白を持って進める",
+    luckyItem: "ポロシャツ",
+    message: "遠くを狙う日ほど、目の前の一打を丁寧に。"
+  }
+];
+
 export const articles: Article[] = [
   {
     slug: "tarot-card-book-lucky-goods-comparison-template",
@@ -414,13 +474,210 @@ export const articles: Article[] = [
       }
     ],
     related: ["tarot-card-book-lucky-goods-comparison-template", "daily-fortune-retention-guide"]
+  },
+  {
+    slug: "beginner-tarot-card-comparison",
+    title: "初心者向けタロットカードおすすめ比較｜選び方と始め方",
+    description:
+      "初めてタロットカードを選ぶ人向けに、絵柄、解説書、サイズ、扱いやすさの比較ポイントをまとめました。",
+    category: "affiliate",
+    datePublished: "2026-05-12",
+    readingMinutes: 7,
+    tags: ["タロットカード", "初心者", "比較", "PR"],
+    type: "comparison",
+    sections: [
+      {
+        heading: "初心者は読みやすさを優先",
+        body: "最初のタロットカードは、絵柄から意味を想像しやすく、解説書が付いているものを選ぶと続けやすくなります。カードの意味を暗記するより、1枚引きで今日の気分を眺める使い方から始めるのがおすすめです。"
+      },
+      {
+        heading: "比較するポイント",
+        body: "比較軸は、絵柄の見やすさ、カードサイズ、紙質、解説書の分かりやすさ、持ち運びやすさです。レビューを見る時は、初心者が使いやすいか、シャッフルしやすいか、カードの印刷が見やすいかを確認しましょう。"
+      },
+      {
+        heading: "占い結果の受け取り方",
+        body: "タロットは未来を断定するものではなく、気持ちを整理するエンタメとして楽しむのが安心です。恋愛や仕事の重大な判断をカードだけで決めず、自分の状態を見つめるきっかけとして使いましょう。"
+      }
+    ],
+    faq: [
+      {
+        question: "初心者は大アルカナだけでも楽しめますか？",
+        answer: "はい。まずは22枚の大アルカナだけで1枚引きをすると、意味を覚えやすく続けやすいです。"
+      },
+      {
+        question: "タロットカードは効果を保証するものですか？",
+        answer: "いいえ。Uranai Gardenではエンタメやセルフリフレクションの道具として紹介しています。"
+      }
+    ],
+    related: ["tarot-card-book-lucky-goods-comparison-template", "ranking-article-template"]
+  },
+  {
+    slug: "fortune-books-ranking",
+    title: "占い本おすすめランキング記事テンプレート｜初心者向けの選び方",
+    description:
+      "占い本をランキング記事にする時の構成、比較軸、PR表記、商品紹介への自然な流れをまとめます。",
+    category: "affiliate",
+    datePublished: "2026-05-12",
+    readingMinutes: 6,
+    tags: ["占い本", "ランキング", "SEO", "PR"],
+    type: "ranking",
+    sections: [
+      {
+        heading: "ランキングの前に選び方を書く",
+        body: "占い本は、星座、タロット、数秘、夢占いなどテーマが分かれます。ランキングの前に、何を知りたい人に向いているかを整理すると、読者が自分に合う本を選びやすくなります。"
+      },
+      {
+        heading: "評価軸を明確にする",
+        body: "読みやすさ、実践しやすさ、図解の多さ、初心者向けか、毎日使えるかを評価軸にします。効果を断定せず、日々の気分を整える読み物として紹介すると安全です。"
+      },
+      {
+        heading: "記事下の導線",
+        body: "ランキング記事の最後には、今日の運勢、誕生日占い、タロット1枚引きへのリンクを置くと回遊しやすくなります。購入前に無料コンテンツを楽しめる流れを作りましょう。"
+      }
+    ],
+    faq: [
+      {
+        question: "占い本ランキングで注意することは？",
+        answer: "広告・PR表記を入れ、効果を断定しないことが大切です。"
+      }
+    ],
+    related: ["beginner-tarot-card-comparison", "daily-fortune-retention-guide"]
+  },
+  {
+    slug: "lucky-goods-ranking",
+    title: "開運グッズおすすめランキング記事テンプレート｜安全な紹介文の作り方",
+    description:
+      "パワーストーン、アクセサリー、手帳などを紹介する時の注意点とランキング記事の型をまとめます。",
+    category: "affiliate",
+    datePublished: "2026-05-12",
+    readingMinutes: 6,
+    tags: ["開運グッズ", "ランキング", "アフィリエイト", "PR"],
+    type: "ranking",
+    sections: [
+      {
+        heading: "開運グッズは気分を整える道具として紹介",
+        body: "開運グッズは、運気が必ず変わると断定せず、毎日の気分を整える小物やインテリアとして紹介します。色、素材、持ち歩きやすさ、ギフト向きかどうかを比較すると自然です。"
+      },
+      {
+        heading: "おすすめカテゴリ",
+        body: "パワーストーン、手帳、アクセサリー、香水、デスク小物は占いサイトと相性が良いカテゴリです。診断結果のラッキーカラーやラッキーアイテムとつなげると、記事下の商品枠にも誘導しやすくなります。"
+      },
+      {
+        heading: "避けたい表現",
+        body: "金運が必ず上がる、恋愛が必ず成就する、健康が改善するなどの断定表現は避けます。Uranai Gardenでは、エンタメ目的で楽しめる前向きな表現に統一します。"
+      }
+    ],
+    faq: [
+      {
+        question: "開運グッズの効果は保証できますか？",
+        answer: "保証できません。日常を楽しくするアイテムとして紹介するのが安全です。"
+      }
+    ],
+    related: ["fortune-books-ranking", "adsense-layout-guide"]
+  },
+  {
+    slug: "love-fortune-books",
+    title: "恋愛運を上げたい日に読みたい本の選び方",
+    description:
+      "恋愛本や自己分析本を、占いサイトの記事として自然に紹介するための構成と注意点をまとめます。",
+    category: "affiliate",
+    datePublished: "2026-05-12",
+    readingMinutes: 5,
+    tags: ["恋愛本", "自己分析", "恋愛運", "PR"],
+    type: "column",
+    sections: [
+      {
+        heading: "恋愛本は行動を決めつけない",
+        body: "恋愛本を紹介する時は、相手を操作する方法ではなく、自分の気持ちを整える読み物として紹介します。相手の気持ちを断定しない表現にすると、安心して読める記事になります。"
+      },
+      {
+        heading: "選び方の軸",
+        body: "自己理解、コミュニケーション、気持ちの整理、前向きな習慣づくりなどの軸で選ぶと、恋愛診断や相性診断から自然に回遊できます。"
+      },
+      {
+        heading: "CTAの置き方",
+        body: "記事下には恋愛タイプ診断、相性診断、今日の運勢へのリンクを置きます。すぐ購入を迫るより、無料診断を挟むことでサイト内の滞在時間を伸ばせます。"
+      }
+    ],
+    faq: [
+      {
+        question: "恋愛記事で避けた方がよい表現は？",
+        answer: "必ず復縁できる、相手の本音が分かるなど、断定的で不安を煽る表現は避けます。"
+      }
+    ],
+    related: ["beginner-tarot-card-comparison", "daily-fortune-retention-guide"]
+  },
+  {
+    slug: "common-dreams-30",
+    title: "夢占いでよく見られる夢30選｜意味と前向きな受け取り方",
+    description:
+      "猫、犬、蛇、海、落ちる、飛ぶ、遅刻など、検索されやすい夢占いキーワードをまとめた記事です。",
+    category: "seo",
+    datePublished: "2026-05-12",
+    readingMinutes: 8,
+    tags: ["夢占い", "検索流入", "SEO"],
+    type: "column",
+    sections: [
+      {
+        heading: "夢占いは気持ちを眺める入口",
+        body: "夢占いは未来を断定するものではなく、今の気持ちや生活リズムを見つめるきっかけとして楽しむのがおすすめです。不安な夢を見ても、悪い予兆と決めつける必要はありません。"
+      },
+      {
+        heading: "よく検索される夢",
+        body: "猫、犬、蛇、海、空、落ちる、飛ぶ、追いかけられる、歯が抜ける、火事、雨、雪、電車、車、学校、元恋人、結婚式、赤ちゃん、知らない人、お金、財布、花、山、川、トイレ、泣く、笑う、迷子、遅刻などは検索流入を狙いやすいテーマです。"
+      },
+      {
+        heading: "詳細ページへつなげる",
+        body: "一覧記事では短く意味を紹介し、詳しく知りたい読者を夢占い詳細ページへ案内します。内部リンクを増やすことで、Googleにもサイト構造が伝わりやすくなります。"
+      }
+    ],
+    faq: [
+      {
+        question: "怖い夢を見たら悪いことが起きますか？",
+        answer: "そうとは限りません。夢占いはエンタメとして、疲れや不安に気づくきっかけにしてください。"
+      }
+    ],
+    related: ["daily-fortune-retention-guide", "adsense-layout-guide"]
+  },
+  {
+    slug: "sports-fortune-guide",
+    title: "スポーツ占いの楽しみ方｜野球・サッカー・バスケで今日の流れをチェック",
+    description:
+      "スポーツのイメージを使って、今日の行動、チームワーク、集中力のヒントを前向きに楽しむ占いガイドです。",
+    category: "sports",
+    datePublished: "2026-05-12",
+    readingMinutes: 5,
+    tags: ["スポーツ占い", "野球占い", "サッカー占い", "バスケ占い"],
+    type: "column",
+    sections: [
+      {
+        heading: "スポーツ占いとは",
+        body: "スポーツ占いは、競技の特徴を日常の行動ヒントに置き換えて楽しむエンタメ占いです。勝敗や試合結果を断定するものではなく、集中力やチームワークを整える言葉として使います。"
+      },
+      {
+        heading: "競技ごとの見方",
+        body: "野球は積み重ね、サッカーは視野と連携、バスケはテンポと切り替え、ランニングは自分のペース、テニスは言葉のラリー、ゴルフは落ち着きと計画性のヒントとして読めます。"
+      },
+      {
+        heading: "毎日戻る導線に向いている",
+        body: "スポーツは季節や大会と相性が良く、SNSでも話題にしやすいテーマです。今日の運勢やラッキーアイテム診断と組み合わせることで、再訪問のきっかけを増やせます。"
+      }
+    ],
+    faq: [
+      {
+        question: "スポーツ占いは試合結果を予想しますか？",
+        answer: "いいえ。試合結果を断定せず、日常の行動ヒントとして楽しむエンタメ占いです。"
+      }
+    ],
+    related: ["daily-fortune-retention-guide", "common-dreams-30"]
   }
 ];
 
 export const categories = [
   { slug: "affiliate", name: "アフィリエイト", description: "商品紹介・比較・ランキング記事の設計。" },
   { slug: "seo", name: "SEO", description: "検索流入と内部リンクの設計。" },
-  { slug: "monetization", name: "収益化", description: "広告配置とCTAの改善。" }
+  { slug: "monetization", name: "収益化", description: "広告配置とCTAの改善。" },
+  { slug: "sports", name: "スポーツ占い", description: "スポーツテーマの占い・記事・再訪問導線。" }
 ] as const;
 
 export const diagnosisContent = {

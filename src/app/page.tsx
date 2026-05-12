@@ -19,6 +19,7 @@ const featureLinks = [
   { href: "/today", title: "今日の運勢", body: "12星座の総合運・恋愛運・仕事運・金運を毎日チェック。" },
   { href: "/tarot", title: "タロット1枚引き", body: "22枚の大アルカナから、今日のヒントを1枚で。" },
   { href: "/omikuji", title: "おみくじ", body: "凶も前向きに読める、やさしいおみくじ。" },
+  { href: "/sports", title: "スポーツ占い", body: "野球・サッカー・バスケなど、競技のイメージで今日の流れをチェック。" },
   { href: "/diagnosis/love", title: "恋愛診断", body: "質問に答えて恋愛タイプを診断。" },
   { href: "/dreams", title: "夢占い検索", body: "30件以上の夢キーワードから意味を探せます。" },
   { href: "/articles", title: "記事一覧", body: "比較記事・ランキング記事・収益化テンプレート。" }

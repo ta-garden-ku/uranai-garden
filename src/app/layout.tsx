@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
+import Script from "next/script";
 import "@/app/globals.css";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -25,6 +26,19 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
         <meta name="google-site-verification" content="RJvGN6LGUJqEPGGMLFMpFK9H2x8rEgyZcFpmG_smE2E" />
       </head>
       <body className="bg-aurora">
+        {siteConfig.gaId ? (
+          <>
+            <Script src={`https://www.googletagmanager.com/gtag/js?id=${siteConfig.gaId}`} strategy="afterInteractive" />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${siteConfig.gaId}');
+              `}
+            </Script>
+          </>
+        ) : null}
         <JsonLd
           data={{
             "@context": "https://schema.org",

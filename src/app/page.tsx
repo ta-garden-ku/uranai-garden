@@ -5,6 +5,7 @@ import { AdSlot } from "@/components/AdSlot";
 import { AffiliateCards } from "@/components/AffiliateCards";
 import { PopularContent, RelatedArticles } from "@/components/ContentBlocks";
 import { SubscribeCta, TodayReturnCta } from "@/components/CTABlocks";
+import { DreamDictionaryIntro, PopularDreams } from "@/components/DreamBlocks";
 import { JsonLd } from "@/components/JsonLd";
 import { PageHero } from "@/components/PageHero";
 import { buildMetadata, faqJsonLd } from "@/lib/seo";
@@ -61,6 +62,8 @@ export default function HomePage() {
 
       <div className="page-shell space-y-10">
         <AdSlot placement="article-top" label="トップページ上部広告" />
+        <DreamDictionaryIntro />
+        <PopularDreams />
         <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {featureLinks.map((link) => (
             <Link key={link.href} className="soft-card group" href={link.href}>

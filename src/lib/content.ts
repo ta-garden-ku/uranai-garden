@@ -388,6 +388,84 @@ export const dreams = [
   advice: `${keyword}の夢を見た日は、気持ちを責めずに「今の自分が何を整えたいか」をやさしく見つめてみましょう。`
 }));
 
+export const dreamCategories = [
+  {
+    slug: "animals",
+    name: "動物の夢",
+    description: "猫、犬、蛇、鳥、魚など、生き物が出てくる夢占い。",
+    dreamSlugs: ["cat", "dog", "snake", "bird", "fish", "insects", "dragon"]
+  },
+  {
+    slug: "nature",
+    name: "自然・天気の夢",
+    description: "海、空、山、川、雨、雪、虹など、自然や天気に関する夢占い。",
+    dreamSlugs: ["sea", "sky", "mountain", "river", "rain", "snow", "moon-dream", "sun-dream", "stars-dream", "forest", "rainbow", "cloud", "thunder", "wind", "earthquake", "volcano", "tree", "fruit"]
+  },
+  {
+    slug: "love",
+    name: "恋愛・結婚の夢",
+    description: "元恋人、結婚式、告白、デート、キスなど、恋愛に関する夢占い。",
+    dreamSlugs: ["ex-lover", "wedding", "confession", "date", "kiss", "hugging", "ring", "line-message", "phone-call"]
+  },
+  {
+    slug: "people",
+    name: "人が出てくる夢",
+    description: "家族、友達、知らない人、先生、上司、芸能人など、人間関係の夢占い。",
+    dreamSlugs: ["stranger", "deceased", "friend", "family", "teacher", "boss", "celebrity", "baby", "child", "grandparent"]
+  },
+  {
+    slug: "places",
+    name: "場所・建物の夢",
+    description: "学校、病院、駅、図書館、部屋、庭など、場所が印象的な夢占い。",
+    dreamSlugs: ["school", "hospital", "station", "library", "room", "garden", "toilet", "island", "desert"]
+  },
+  {
+    slug: "objects",
+    name: "物・アイテムの夢",
+    description: "鍵、鏡、財布、手紙、時計、バッグなど、物が印象的な夢占い。",
+    dreamSlugs: ["money", "wallet", "key", "mirror", "letter", "book", "watch", "bag", "camera", "crystal", "necklace", "gift", "lost-item", "treasure", "map", "calendar", "candle", "perfume", "accessory"]
+  },
+  {
+    slug: "actions",
+    name: "行動の夢",
+    description: "落ちる、飛ぶ、走る、泳ぐ、掃除、買い物など、行動が印象的な夢占い。",
+    dreamSlugs: ["falling", "flying", "chased", "running-dream", "swimming", "cleaning", "shopping", "cooking", "eating", "crying", "laughing", "anger", "apologizing", "finding", "hiding", "escaping", "fighting", "dance", "singing", "climbing", "diving"]
+  },
+  {
+    slug: "transport",
+    name: "乗り物・移動の夢",
+    description: "電車、車、飛行機、船、自転車、旅行など、移動に関する夢占い。",
+    dreamSlugs: ["train", "car", "airplane", "boat", "bicycle", "travel", "bus", "bridge", "stairs", "elevator", "moving"]
+  },
+  {
+    slug: "colors",
+    name: "色の夢",
+    description: "白、黒、赤、青、緑、金色、銀色など、色が印象的な夢占い。",
+    dreamSlugs: ["white", "black", "red", "blue", "green", "gold", "silver"]
+  },
+  {
+    slug: "sports",
+    name: "スポーツの夢",
+    description: "野球、サッカー、バスケ、マラソンなど、スポーツに関する夢占い。",
+    dreamSlugs: ["sports", "baseball-dream", "soccer-dream", "basketball-dream", "marathon"]
+  }
+] as const;
+
+export const popularDreamSlugs = [
+  "cat",
+  "dog",
+  "snake",
+  "falling",
+  "flying",
+  "chased",
+  "teeth",
+  "ex-lover",
+  "money",
+  "wedding",
+  "late",
+  "key"
+] as const;
+
 export const affiliateCategories = [
   "占い本",
   "タロットカード",
@@ -983,6 +1061,45 @@ export const categories = [
   { slug: "seo", name: "SEO", description: "検索流入と内部リンクの設計。" },
   { slug: "monetization", name: "収益化", description: "広告配置とCTAの改善。" },
   { slug: "sports", name: "スポーツ占い", description: "スポーツテーマの占い・記事・再訪問導線。" }
+] as const;
+
+export const articleThemes = [
+  {
+    slug: "tarot",
+    name: "タロット記事",
+    description: "タロットカードの意味、選び方、初心者向けガイド。",
+    matchTags: ["タロット", "タロットカード", "大アルカナ"]
+  },
+  {
+    slug: "dream",
+    name: "夢占い記事",
+    description: "夢占い辞典、人気キーワード、検索流入向け記事。",
+    matchTags: ["夢占い", "検索流入"]
+  },
+  {
+    slug: "love",
+    name: "恋愛占い記事",
+    description: "恋愛診断、恋愛本、相性診断につながる記事。",
+    matchTags: ["恋愛本", "恋愛運", "恋愛"]
+  },
+  {
+    slug: "lucky-goods",
+    name: "開運グッズ記事",
+    description: "パワーストーン、ラッキーカラー、開運グッズの紹介記事。",
+    matchTags: ["開運グッズ", "パワーストーン", "ラッキーカラー", "PR"]
+  },
+  {
+    slug: "daily",
+    name: "毎日占い記事",
+    description: "今日の運勢、朝の占い、再訪問導線に関する記事。",
+    matchTags: ["今日の運勢", "毎日占い", "習慣化", "回遊率"]
+  },
+  {
+    slug: "sports",
+    name: "スポーツ占い記事",
+    description: "野球、サッカー、バスケなどスポーツテーマの占い記事。",
+    matchTags: ["スポーツ占い", "野球占い", "サッカー占い", "バスケ占い"]
+  }
 ] as const;
 
 export const diagnosisContent = {

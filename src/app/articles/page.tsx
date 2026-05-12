@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { AdSlot } from "@/components/AdSlot";
 import { PageHero } from "@/components/PageHero";
-import { articles, categories } from "@/lib/content";
+import { articles, articleThemes, categories } from "@/lib/content";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
@@ -19,6 +19,11 @@ export default function ArticlesPage() {
         {categories.map((category) => (
           <Link key={category.slug} className="btn-secondary" href={`/categories/${category.slug}`}>
             {category.name}
+          </Link>
+        ))}
+        {articleThemes.map((theme) => (
+          <Link key={theme.slug} className="btn-secondary" href={`/articles/category/${theme.slug}`}>
+            {theme.name}
           </Link>
         ))}
       </section>

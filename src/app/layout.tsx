@@ -9,10 +9,7 @@ import { entertainmentNotice, siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = buildMetadata({
   title: "Uranai Garden｜毎日楽しめる占い・診断・おみくじ",
-  description: siteConfig.description,
-  verification: {
-    google: "RJvGN6LGUJqEPGGMLFMpFK9H2x8rEgyZcFpmG_smE2E"
-  }
+  description: siteConfig.description
 });
 
 export const viewport: Viewport = {
@@ -24,6 +21,9 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <html lang="ja">
+      <head>
+        <meta name="google-site-verification" content="RJvGN6LGUJqEPGGMLFMpFK9H2x8rEgyZcFpmG_smE2E" />
+      </head>
       <body className="bg-aurora">
         <JsonLd
           data={{

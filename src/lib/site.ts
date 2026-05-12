@@ -5,7 +5,7 @@ export const siteConfig = {
     "毎日使える占い・診断・おみくじを楽しめる、スマホ向けエンタメ占いサイトです。",
   lineCtaUrl: process.env.NEXT_PUBLIC_LINE_CTA_URL ?? "https://line.me/R/",
   emailCtaUrl: process.env.NEXT_PUBLIC_EMAIL_CTA_URL ?? "/contact",
-  adsenseClient: process.env.NEXT_PUBLIC_ADSENSE_CLIENT ?? "ca-pub-xxxxxxxxxxxxxxxx",
+  adsenseClient: process.env.NEXT_PUBLIC_ADSENSE_CLIENT ?? "ca-pub-3214842113322197",
   gaId: process.env.NEXT_PUBLIC_GA_ID
 } as const;
 

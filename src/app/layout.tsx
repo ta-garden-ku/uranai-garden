@@ -39,6 +39,11 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
             </Script>
           </>
         ) : null}
+        <Script
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${siteConfig.adsenseClient}`}
+          strategy="afterInteractive"
+          crossOrigin="anonymous"
+        />
         <JsonLd
           data={{
             "@context": "https://schema.org",

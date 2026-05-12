@@ -24,6 +24,11 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
     <html lang="ja">
       <head>
         <meta name="google-site-verification" content="RJvGN6LGUJqEPGGMLFMpFK9H2x8rEgyZcFpmG_smE2E" />
+        <script
+          async
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${siteConfig.adsenseClient}`}
+          crossOrigin="anonymous"
+        />
       </head>
       <body className="bg-aurora">
         {siteConfig.gaId ? (
@@ -39,11 +44,6 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
             </Script>
           </>
         ) : null}
-        <Script
-          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${siteConfig.adsenseClient}`}
-          strategy="afterInteractive"
-          crossOrigin="anonymous"
-        />
         <JsonLd
           data={{
             "@context": "https://schema.org",

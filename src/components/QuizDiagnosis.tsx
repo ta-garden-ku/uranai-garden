@@ -37,9 +37,7 @@ export function QuizDiagnosis({ title, description, questions, results }: Props)
   }, [answers, results]);
 
   function chooseAnswer(optionIndex: number) {
-    setAnswers((currentAnswers) =>
-      currentAnswers.map((value, index) => (index === current ? optionIndex : value))
-    );
+    setAnswers((currentAnswers) => currentAnswers.map((value, index) => (index === current ? optionIndex : value)));
 
     window.setTimeout(() => {
       if (current < questions.length - 1) {
@@ -51,8 +49,8 @@ export function QuizDiagnosis({ title, description, questions, results }: Props)
       window.setTimeout(() => {
         setIsAnalyzing(false);
         setDone(true);
-      }, 950);
-    }, 220);
+      }, 1250);
+    }, 240);
   }
 
   function goBack() {
@@ -71,10 +69,10 @@ export function QuizDiagnosis({ title, description, questions, results }: Props)
         </div>
 
         <div className="mt-5 h-2 overflow-hidden rounded-full bg-paper">
-          <div className="h-full rounded-full bg-gradient-to-r from-orchid to-roseglow transition-all duration-500" style={{ width: `${progress}%` }} />
+          <div className="quiz-progress h-full rounded-full bg-gradient-to-r from-orchid to-roseglow transition-all duration-500" style={{ width: `${progress}%` }} />
         </div>
         <p className="mt-2 text-xs font-bold text-plum/55">
-          {answeredCount} / {questions.length} 問回答
+          {answeredCount} / {questions.length} 回答済み
         </p>
 
         {!done && !isAnalyzing && (
@@ -107,20 +105,25 @@ export function QuizDiagnosis({ title, description, questions, results }: Props)
 
         {isAnalyzing && (
           <div className="diagnosis-analyzing mt-6 rounded-lg bg-paper p-8 text-center">
+            <div className="diagnosis-rings mx-auto" aria-hidden>
+              <span />
+              <span />
+              <span />
+            </div>
             <div className="diagnosis-crystal mx-auto">
               <Sparkles size={34} aria-hidden />
             </div>
             <h3 className="mt-4 text-xl font-bold text-plum">診断中...</h3>
-            <p className="mt-2 text-sm text-plum/65">回答から、今日のあなたに合う結果を読み解いています。</p>
+            <p className="mt-2 text-sm text-plum/65">回答から、今日のあなたに合う結果を読み取っています。</p>
           </div>
         )}
       </section>
 
       {done && (
-        <div className="result-pop">
+        <div className="result-pop result-pop-luminous">
           <ResultCard title={result.title} subtitle={result.body}>
             <p className="leading-7">
-              今日のヒントは、結果を決めつけではなく、自分の気持ちを眺める鏡として使うことです。
+              今日のヒントは、結果を決めつけるものではなく、自分の気持ちを眺める鏡としてお楽しみください。
             </p>
           </ResultCard>
         </div>

@@ -82,6 +82,13 @@ a {
   animation: stage-spin 1.2s linear infinite;
 }
 
+.tarot-stage.phase-selecting::before,
+.tarot-stage.phase-revealing::before,
+.tarot-stage.has-card::before {
+  opacity: 1;
+  animation: stage-spin 2.4s linear infinite;
+}
+
 .tarot-orbit {
   position: absolute;
   inset: 26px;
@@ -116,6 +123,38 @@ a {
 .tarot-orbit.is-drawing {
   animation: orbit-glow 1.1s ease-in-out infinite;
 }
+
+.tarot-particles span {
+  position: absolute;
+  z-index: 5;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: #f4c95d;
+  opacity: 0;
+  box-shadow: 0 0 16px rgba(244, 201, 93, 0.9);
+}
+
+.tarot-particles span:nth-child(1) { left: 19%; top: 30%; }
+.tarot-particles span:nth-child(2) { left: 36%; top: 17%; }
+.tarot-particles span:nth-child(3) { right: 28%; top: 22%; }
+.tarot-particles span:nth-child(4) { right: 17%; top: 46%; }
+.tarot-particles span:nth-child(5) { right: 31%; bottom: 18%; }
+.tarot-particles span:nth-child(6) { left: 43%; bottom: 15%; }
+.tarot-particles span:nth-child(7) { left: 21%; bottom: 31%; }
+.tarot-particles span:nth-child(8) { left: 50%; top: 48%; }
+
+.tarot-particles.is-active span {
+  animation: tarot-particle-rise 1.45s ease-in-out infinite;
+}
+
+.tarot-particles.is-active span:nth-child(2) { animation-delay: 0.12s; }
+.tarot-particles.is-active span:nth-child(3) { animation-delay: 0.24s; }
+.tarot-particles.is-active span:nth-child(4) { animation-delay: 0.36s; }
+.tarot-particles.is-active span:nth-child(5) { animation-delay: 0.48s; }
+.tarot-particles.is-active span:nth-child(6) { animation-delay: 0.6s; }
+.tarot-particles.is-active span:nth-child(7) { animation-delay: 0.72s; }
+.tarot-particles.is-active span:nth-child(8) { animation-delay: 0.84s; }
 
 .tarot-fan {
   position: absolute;
@@ -160,6 +199,51 @@ a {
 
 .tarot-fan.is-drawing span:nth-child(5) {
   animation: fan-card-5 1.15s ease-in-out infinite;
+}
+
+.tarot-choice-row {
+  position: absolute;
+  z-index: 2;
+  inset: auto 22px 24px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
+
+.tarot-choice-row span {
+  width: 40px;
+  height: 58px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  background:
+    repeating-linear-gradient(45deg, rgba(244, 201, 93, 0.2) 0 4px, transparent 4px 10px),
+    linear-gradient(145deg, #4b235f, #a855f7 62%, #f472b6);
+  box-shadow: 0 12px 24px rgba(75, 35, 95, 0.16);
+}
+
+.tarot-choice-row.is-selecting {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.tarot-choice-row.is-selecting span {
+  animation: tarot-choice-hover 0.86s ease-in-out infinite alternate;
+}
+
+.tarot-choice-row.is-selecting span:nth-child(2) { animation-delay: 0.08s; }
+.tarot-choice-row.is-selecting span:nth-child(3) { animation-delay: 0.16s; }
+.tarot-choice-row.is-selecting span:nth-child(4) { animation-delay: 0.24s; }
+.tarot-choice-row.is-selecting span:nth-child(5) { animation-delay: 0.32s; }
+
+.tarot-choice-row.is-selecting .is-chosen {
+  box-shadow:
+    0 0 0 2px rgba(244, 201, 93, 0.55),
+    0 0 28px rgba(244, 201, 93, 0.72);
 }
 
 .tarot-deck {
@@ -250,6 +334,19 @@ a {
   animation: draw-pulse 0.34s ease-in-out infinite alternate;
 }
 
+.tarot-phase-label,
+.omikuji-phase-label {
+  position: absolute;
+  left: 50%;
+  bottom: 12px;
+  z-index: 6;
+  min-height: 18px;
+  transform: translateX(-50%);
+  color: rgba(75, 35, 95, 0.66);
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
 .omikuji-stage {
   position: relative;
   width: min(100%, 300px);
@@ -272,6 +369,12 @@ a {
   border: 1px solid rgba(244, 201, 93, 0.36);
   box-shadow: 0 0 40px rgba(244, 201, 93, 0.24);
   animation: soft-breathe 2.4s ease-in-out infinite;
+}
+
+.omikuji-stage.phase-opening::before,
+.omikuji-stage.phase-revealed::before {
+  animation: soft-breathe 1.1s ease-in-out infinite;
+  opacity: 0.82;
 }
 
 .omikuji-sparkles span {
@@ -344,6 +447,25 @@ a {
   animation: omikuji-shake 0.12s ease-in-out infinite;
 }
 
+.omikuji-box.is-opening {
+  animation: omikuji-open-pop 0.52s cubic-bezier(0.16, 0.9, 0.18, 1.08) both;
+}
+
+.omikuji-lid {
+  position: absolute;
+  top: -11px;
+  width: 98px;
+  height: 20px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #f4c95d, #fff0a8, #f4c95d);
+  box-shadow: 0 8px 18px rgba(75, 35, 95, 0.18);
+  transform-origin: center right;
+}
+
+.omikuji-box.is-opening .omikuji-lid {
+  animation: omikuji-lid-open 0.48s ease both;
+}
+
 .omikuji-stick {
   position: absolute;
   z-index: 1;
@@ -371,8 +493,54 @@ a {
   animation: stick-out-pop 0.62s cubic-bezier(0.16, 0.9, 0.18, 1.08) both;
 }
 
+.omikuji-paper {
+  position: absolute;
+  z-index: 4;
+  top: 54px;
+  display: grid;
+  place-items: center;
+  width: 118px;
+  height: 44px;
+  border-radius: 8px;
+  background:
+    linear-gradient(90deg, rgba(75, 35, 95, 0.06) 1px, transparent 1px) 0 0 / 18px 100%,
+    #fff8f2;
+  border: 1px solid rgba(244, 201, 93, 0.75);
+  color: #4b235f;
+  box-shadow: 0 18px 34px rgba(75, 35, 95, 0.18);
+  opacity: 0;
+  transform: translateY(64px) scaleX(0.34);
+  transform-origin: center;
+}
+
+.omikuji-paper.is-open {
+  animation: omikuji-paper-open 0.72s cubic-bezier(0.16, 0.9, 0.18, 1.08) 0.1s both;
+}
+
+.omikuji-paper strong {
+  font-size: 1.15rem;
+  font-weight: 900;
+}
+
 .result-pop {
   animation: result-pop 0.5s cubic-bezier(0.2, 0.8, 0.22, 1) both;
+}
+
+.result-pop-luminous {
+  position: relative;
+}
+
+.result-pop-luminous::before {
+  content: "";
+  position: absolute;
+  inset: -18px;
+  z-index: -1;
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 30% 20%, rgba(244, 201, 93, 0.34), transparent 24%),
+    radial-gradient(circle at 70% 30%, rgba(244, 114, 182, 0.22), transparent 26%);
+  filter: blur(4px);
+  animation: result-aura 1.8s ease-in-out both;
 }
 
 .result-card {
@@ -450,8 +618,47 @@ a {
   background: radial-gradient(circle, #a855f7 40%, transparent 44%);
 }
 
+.quiz-progress {
+  position: relative;
+  overflow: hidden;
+}
+
+.quiz-progress::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.58), transparent);
+  transform: translateX(-100%);
+  animation: progress-shine 1.2s ease-in-out infinite;
+}
+
 .diagnosis-analyzing {
+  position: relative;
   animation: result-pop 0.42s cubic-bezier(0.2, 0.8, 0.22, 1) both;
+}
+
+.diagnosis-rings {
+  position: absolute;
+  inset: 40px 0 auto;
+  width: 120px;
+  height: 120px;
+  pointer-events: none;
+}
+
+.diagnosis-rings span {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  border: 1px solid rgba(168, 85, 247, 0.24);
+  animation: diagnosis-ring 1.35s ease-out infinite;
+}
+
+.diagnosis-rings span:nth-child(2) {
+  animation-delay: 0.22s;
+}
+
+.diagnosis-rings span:nth-child(3) {
+  animation-delay: 0.44s;
 }
 
 .diagnosis-crystal {
@@ -504,6 +711,27 @@ a {
   }
   100% {
     transform: translateY(-12px) rotateY(180deg) scale(1.06);
+  }
+}
+
+@keyframes tarot-particle-rise {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translateY(10px) scale(0.55);
+  }
+  44% {
+    opacity: 1;
+    transform: translateY(-8px) scale(1.18);
+  }
+}
+
+@keyframes tarot-choice-hover {
+  from {
+    transform: translateY(5px) rotate(-1deg);
+  }
+  to {
+    transform: translateY(-8px) rotate(1deg);
   }
 }
 
@@ -585,6 +813,27 @@ a {
   }
 }
 
+@keyframes omikuji-open-pop {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  55% {
+    transform: translateY(-8px) scale(1.04);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes omikuji-lid-open {
+  from {
+    transform: rotate(0deg) translateY(0);
+  }
+  to {
+    transform: rotate(9deg) translate(12px, -8px);
+  }
+}
+
 @keyframes stick-peek {
   from {
     transform: translateY(92px);
@@ -603,6 +852,21 @@ a {
   }
   100% {
     transform: translateY(26px) scale(1);
+  }
+}
+
+@keyframes omikuji-paper-open {
+  0% {
+    opacity: 0;
+    transform: translateY(64px) scaleX(0.34);
+  }
+  52% {
+    opacity: 1;
+    transform: translateY(8px) scaleX(0.58);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(-4px) scaleX(1);
   }
 }
 
@@ -641,6 +905,21 @@ a {
   }
 }
 
+@keyframes result-aura {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+  to {
+    opacity: 0.72;
+    transform: scale(1);
+  }
+}
+
 @keyframes quiz-slide-in {
   from {
     opacity: 0;
@@ -661,9 +940,31 @@ a {
   }
 }
 
+@keyframes progress-shine {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes diagnosis-ring {
+  from {
+    opacity: 0.72;
+    transform: scale(0.36);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.08);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .tarot-orbit.is-drawing,
+  .tarot-particles.is-active span,
+  .tarot-choice-row.is-selecting span,
   .tarot-stage:has(.tarot-deck.is-shuffling)::before,
+  .tarot-stage.phase-selecting::before,
+  .tarot-stage.phase-revealing::before,
+  .tarot-stage.has-card::before,
   .tarot-fan.is-drawing span,
   .tarot-deck.is-shuffling .tarot-card-left,
   .tarot-deck.is-shuffling .tarot-card-right,
@@ -672,17 +973,24 @@ a {
   .omikuji-stage::before,
   .omikuji-sparkles.is-active span,
   .omikuji-box.is-shaking,
+  .omikuji-box.is-opening,
+  .omikuji-box.is-opening .omikuji-lid,
   .omikuji-stick.is-drawing,
   .omikuji-stick.is-out,
+  .omikuji-paper.is-open,
   .result-pop,
+  .result-pop-luminous::before,
+  .quiz-progress::after,
   .quiz-slide,
   .diagnosis-analyzing,
-  .diagnosis-crystal {
+  .diagnosis-crystal,
+  .diagnosis-rings span {
     animation: none;
   }
 
   .tarot-card-main,
-  .omikuji-stick {
+  .omikuji-stick,
+  .tarot-choice-row {
     transition: none;
   }
 }

@@ -2,31 +2,36 @@
 
 import { useState } from "react";
 import { RotateCcw, Sparkles } from "lucide-react";
-import { tarotCards } from "@/lib/content";
 import { ResultCard } from "@/components/ResultCard";
+import { tarotCards } from "@/lib/content";
 
 type DrawState = {
   index: number;
   reversed: boolean;
 };
 
+type DrawPhase = "idle" | "shuffling" | "selecting" | "revealing";
+
 export function TarotDraw() {
   const [draw, setDraw] = useState<DrawState | null>(null);
-  const [isDrawing, setIsDrawing] = useState(false);
+  const [phase, setPhase] = useState<DrawPhase>("idle");
   const card = draw ? tarotCards[draw.index] : null;
+  const isDrawing = phase !== "idle";
 
   function handleDraw() {
     if (isDrawing) return;
     setDraw(null);
-    setIsDrawing(true);
+    setPhase("shuffling");
 
+    window.setTimeout(() => setPhase("selecting"), 650);
     window.setTimeout(() => {
       setDraw({
         index: Math.floor(Math.random() * tarotCards.length),
         reversed: Math.random() > 0.5
       });
-      setIsDrawing(false);
-    }, 1200);
+      setPhase("revealing");
+    }, 1450);
+    window.setTimeout(() => setPhase("idle"), 2200);
   }
 
   return (
@@ -38,20 +43,30 @@ export function TarotDraw() {
           カードをシャッフルして、今日の気分を整える前向きなヒントを受け取りましょう。
         </p>
 
-        <div className="tarot-stage mx-auto mt-6">
+        <div className={`tarot-stage mx-auto mt-6 phase-${phase} ${card ? "has-card" : ""}`}>
           <div className={`tarot-orbit ${isDrawing ? "is-drawing" : ""}`} aria-hidden>
             <span />
             <span />
             <span />
           </div>
-          <div className={`tarot-fan ${isDrawing ? "is-drawing" : ""}`} aria-hidden>
+          <div className={`tarot-particles ${isDrawing || card ? "is-active" : ""}`} aria-hidden>
+            {Array.from({ length: 8 }, (_, index) => (
+              <span key={index} />
+            ))}
+          </div>
+          <div className={`tarot-fan ${phase === "shuffling" ? "is-drawing" : ""}`} aria-hidden>
             <span />
             <span />
             <span />
             <span />
             <span />
           </div>
-          <div className={`tarot-deck ${isDrawing ? "is-shuffling" : ""}`} aria-live="polite">
+          <div className={`tarot-choice-row ${phase === "selecting" ? "is-selecting" : ""}`} aria-hidden>
+            {Array.from({ length: 5 }, (_, index) => (
+              <span key={index} className={index === 2 ? "is-chosen" : ""} />
+            ))}
+          </div>
+          <div className={`tarot-deck ${phase === "shuffling" ? "is-shuffling" : ""}`} aria-live="polite">
             <div className="tarot-card tarot-card-back tarot-card-left" />
             <div className="tarot-card tarot-card-back tarot-card-right" />
             <div className={`tarot-card tarot-card-main ${card ? "is-revealed" : ""}`}>
@@ -60,23 +75,28 @@ export function TarotDraw() {
                 <span>TAROT</span>
               </div>
               <div className="tarot-card-face tarot-card-face-front">
-                <span className="text-xs font-black tracking-[0.18em] text-mintnight">
+                <span className="text-xs font-black text-mintnight">
                   {draw?.reversed ? "REVERSED" : "UPRIGHT"}
                 </span>
                 <strong>{card?.name ?? "?"}</strong>
               </div>
             </div>
           </div>
+          <p className="tarot-phase-label" aria-live="polite">
+            {phase === "shuffling" && "カードを混ぜています"}
+            {phase === "selecting" && "1枚のカードが選ばれています"}
+            {phase === "revealing" && "カードを開いています"}
+          </p>
         </div>
 
         <button className="btn-primary mt-6" type="button" onClick={handleDraw} disabled={isDrawing}>
-          <RotateCcw size={16} className={isDrawing ? "animate-spin" : ""} aria-hidden />
-          {isDrawing ? "カードをシャッフル中..." : card ? "もう一度引く" : "カードを引く"}
+          <RotateCcw size={16} className={phase === "shuffling" ? "animate-spin" : ""} aria-hidden />
+          {isDrawing ? "カードを読み取り中..." : card ? "もう一度引く" : "カードを引く"}
         </button>
       </section>
 
       {card && !isDrawing && (
-        <div className="result-pop">
+        <div className="result-pop result-pop-luminous">
           <ResultCard
             title={`${card.name}${draw?.reversed ? " 逆位置" : " 正位置"}`}
             subtitle={draw?.reversed ? card.reversed : card.upright}

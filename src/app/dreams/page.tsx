@@ -1,6 +1,6 @@
 import { AdSlot } from "@/components/AdSlot";
 import { DreamSearch } from "@/components/DreamSearch";
-import { DreamCategoryLinks, PopularDreams } from "@/components/DreamBlocks";
+import { DreamCategoryLinks, DreamKanaIndex, PopularDreams } from "@/components/DreamBlocks";
 import { PageHero } from "@/components/PageHero";
 import { buildMetadata } from "@/lib/seo";
 
@@ -17,6 +17,7 @@ export default function DreamsPage() {
       <AdSlot placement="article-top" />
       <PopularDreams />
       <DreamCategoryLinks />
+      <DreamKanaIndex />
       <DreamSearch />
     </main>
   );

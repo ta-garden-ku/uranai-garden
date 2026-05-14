@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { ChevronLeft, Sparkles } from "lucide-react";
 import { ResultCard } from "@/components/ResultCard";
 
 type Question = {
@@ -21,59 +22,108 @@ type Props = {
 };
 
 export function QuizDiagnosis({ title, description, questions, results }: Props) {
-  const [answers, setAnswers] = useState<number[]>(Array(questions.length).fill(0));
+  const [answers, setAnswers] = useState<Array<number | null>>(Array(questions.length).fill(null));
+  const [current, setCurrent] = useState(0);
   const [done, setDone] = useState(false);
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
+
+  const answeredCount = answers.filter((answer) => answer !== null).length;
+  const progress = Math.round((answeredCount / questions.length) * 100);
+  const question = questions[current];
+
   const result = useMemo(() => {
-    const total = answers.reduce((sum, value) => sum + value, 0);
+    const total = answers.reduce((sum, value) => sum + (value ?? 0), 0);
     return results[total % results.length];
   }, [answers, results]);
 
+  function chooseAnswer(optionIndex: number) {
+    setAnswers((currentAnswers) =>
+      currentAnswers.map((value, index) => (index === current ? optionIndex : value))
+    );
+
+    window.setTimeout(() => {
+      if (current < questions.length - 1) {
+        setCurrent((value) => value + 1);
+        return;
+      }
+
+      setIsAnalyzing(true);
+      window.setTimeout(() => {
+        setIsAnalyzing(false);
+        setDone(true);
+      }, 950);
+    }, 220);
+  }
+
+  function goBack() {
+    setDone(false);
+    setIsAnalyzing(false);
+    setCurrent((value) => Math.max(0, value - 1));
+  }
+
   return (
     <div className="space-y-5">
-      <form
-        className="soft-card space-y-5"
-        onSubmit={(event) => {
-          event.preventDefault();
-          setDone(true);
-        }}
-      >
+      <section className="soft-card overflow-hidden">
         <div>
           <p className="kicker">DIAGNOSIS</p>
           <h2 className="mt-2 text-2xl font-bold text-plum">{title}</h2>
           <p className="mt-2 text-sm leading-7 text-plum/70">{description}</p>
         </div>
-        {questions.map((question, questionIndex) => (
-          <fieldset key={question.text} className="rounded-lg bg-paper p-4">
-            <legend className="font-bold text-plum">{question.text}</legend>
-            <div className="mt-3 grid gap-2">
-              {question.options.map((option, optionIndex) => (
-                <label key={option} className="flex items-center gap-2 rounded-lg bg-white px-3 py-2 text-sm">
-                  <input
-                    type="radio"
-                    name={`question-${questionIndex}`}
-                    checked={answers[questionIndex] === optionIndex}
-                    onChange={() =>
-                      setAnswers((current) =>
-                        current.map((value, index) => (index === questionIndex ? optionIndex : value))
-                      )
-                    }
-                  />
-                  {option}
-                </label>
-              ))}
+
+        <div className="mt-5 h-2 overflow-hidden rounded-full bg-paper">
+          <div className="h-full rounded-full bg-gradient-to-r from-orchid to-roseglow transition-all duration-500" style={{ width: `${progress}%` }} />
+        </div>
+        <p className="mt-2 text-xs font-bold text-plum/55">
+          {answeredCount} / {questions.length} 問回答
+        </p>
+
+        {!done && !isAnalyzing && (
+          <div className="quiz-slide mt-6" key={current}>
+            <div className="rounded-lg bg-paper p-5">
+              <p className="kicker">QUESTION {current + 1}</p>
+              <h3 className="mt-2 text-xl font-bold text-plum">{question.text}</h3>
+              <div className="mt-4 grid gap-3">
+                {question.options.map((option, optionIndex) => (
+                  <button
+                    key={option}
+                    className={`quiz-option ${answers[current] === optionIndex ? "is-selected" : ""}`}
+                    type="button"
+                    onClick={() => chooseAnswer(optionIndex)}
+                  >
+                    <span>{option}</span>
+                  </button>
+                ))}
+              </div>
             </div>
-          </fieldset>
-        ))}
-        <button className="btn-primary w-full sm:w-auto" type="submit">
-          結果を見る
-        </button>
-      </form>
+            <div className="mt-4 flex items-center justify-between">
+              <button className="btn-secondary" type="button" onClick={goBack} disabled={current === 0}>
+                <ChevronLeft size={16} aria-hidden />
+                戻る
+              </button>
+              <span className="text-sm font-bold text-plum/55">選ぶと次へ進みます</span>
+            </div>
+          </div>
+        )}
+
+        {isAnalyzing && (
+          <div className="diagnosis-analyzing mt-6 rounded-lg bg-paper p-8 text-center">
+            <div className="diagnosis-crystal mx-auto">
+              <Sparkles size={34} aria-hidden />
+            </div>
+            <h3 className="mt-4 text-xl font-bold text-plum">診断中...</h3>
+            <p className="mt-2 text-sm text-plum/65">回答から、今日のあなたに合う結果を読み解いています。</p>
+          </div>
+        )}
+      </section>
+
       {done && (
-        <ResultCard title={result.title} subtitle={result.body}>
-          <p className="leading-7">
-            今日のヒントは、結果を「決めつけ」ではなく、自分の気持ちを眺める鏡として使うことです。
-          </p>
-        </ResultCard>
+        <div className="result-pop">
+          <ResultCard title={result.title} subtitle={result.body}>
+            <p className="leading-7">
+              今日のヒントは、結果を決めつけではなく、自分の気持ちを眺める鏡として使うことです。
+            </p>
+          </ResultCard>
+        </div>
       )}
     </div>
   );

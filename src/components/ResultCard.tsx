@@ -11,8 +11,8 @@ type Props = {
 
 export function ResultCard({ title, subtitle, children }: Props) {
   return (
-    <section className="overflow-hidden rounded-lg border border-white/80 bg-white/90 shadow-soft">
-      <div className="bg-gradient-to-r from-plum via-orchid to-roseglow p-5 text-white">
+    <section className="result-card overflow-hidden rounded-lg border border-white/80 bg-white/90 shadow-soft">
+      <div className="result-card-hero p-5 text-white">
         <div className="flex items-center gap-2 text-sm font-bold">
           <Sparkles size={18} aria-hidden />
           SNSシェア用 結果カード

@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { BookOpen, Flame, Tags } from "lucide-react";
-import { dreamCategories, dreams, popularDreamSlugs } from "@/lib/content";
+import { BookOpen, Flame, ListFilter, Tags } from "lucide-react";
+import { dreamCategories, dreamKanaGroups, dreams, popularDreamSlugs } from "@/lib/content";
+import { hashText, todayKey } from "@/lib/fortune";
 
 export function DreamCategoryLinks() {
   return (
@@ -24,7 +25,11 @@ export function DreamCategoryLinks() {
 }
 
 export function PopularDreams() {
-  const items = popularDreamSlugs
+  const rotated = [...popularDreamSlugs].sort((a, b) => {
+    const key = todayKey();
+    return hashText(`${key}-${a}`) - hashText(`${key}-${b}`);
+  });
+  const items = rotated
     .map((slug) => dreams.find((dream) => dream.slug === slug))
     .filter(Boolean);
 
@@ -32,7 +37,7 @@ export function PopularDreams() {
     <section className="space-y-3">
       <div className="flex items-center gap-2">
         <Flame size={18} className="text-mintnight" aria-hidden />
-        <h2 className="text-xl font-bold text-plum">人気の夢占いランキング</h2>
+        <h2 className="text-xl font-bold text-plum">今日の人気夢占いランキング</h2>
       </div>
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {items.map((dream, index) => (
@@ -44,6 +49,38 @@ export function PopularDreams() {
             </Link>
           )
         ))}
+      </div>
+    </section>
+  );
+}
+
+export function DreamKanaIndex() {
+  return (
+    <section className="space-y-3">
+      <div className="flex items-center gap-2">
+        <ListFilter size={18} className="text-mintnight" aria-hidden />
+        <h2 className="text-xl font-bold text-plum">あいうえお索引</h2>
+      </div>
+      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+        {dreamKanaGroups.map((group) => {
+          const items = group.dreamSlugs
+            .map((slug) => dreams.find((dream) => dream.slug === slug))
+            .filter(Boolean);
+          return (
+            <div key={group.slug} className="rounded-lg bg-white/85 p-4 shadow-soft">
+              <h3 className="text-lg font-bold text-plum">{group.label}</h3>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {items.map((dream) => (
+                  dream && (
+                    <Link key={dream.slug} className="rounded-full bg-paper px-3 py-1 text-xs font-bold text-plum/75" href={`/dreams/${dream.slug}`}>
+                      {dream.keyword}
+                    </Link>
+                  )
+                ))}
+              </div>
+            </div>
+          );
+        })}
       </div>
     </section>
   );

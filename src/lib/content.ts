@@ -466,6 +466,59 @@ export const popularDreamSlugs = [
   "key"
 ] as const;
 
+export const dreamKanaGroups = [
+  {
+    slug: "a",
+    label: "あ行",
+    dreamSlugs: ["rain", "anger", "apologizing", "accessory", "airplane", "angel", "island", "insects", "watch", "sea", "singing"]
+  },
+  {
+    slug: "ka",
+    label: "か行",
+    dreamSlugs: ["key", "mirror", "stairs", "camera", "calendar", "candle", "kiss", "confession", "coffee", "child", "gold", "cloud"]
+  },
+  {
+    slug: "sa",
+    label: "さ行",
+    dreamSlugs: ["wallet", "soccer-dream", "cleaning", "sky", "sports", "smartphone", "snow", "school", "stars-dream", "snake"]
+  },
+  {
+    slug: "ta",
+    label: "た行",
+    dreamSlugs: ["sun-dream", "treasure", "dance", "late", "teacher", "moon-dream", "phone-call", "door", "train"]
+  },
+  {
+    slug: "na",
+    label: "な行",
+    dreamSlugs: ["crying", "lost-item", "necklace", "cat"]
+  },
+  {
+    slug: "ha",
+    label: "は行",
+    dreamSlugs: ["bridge", "flower", "fire", "flying", "book", "hospital", "bus", "bag", "bread", "boat"]
+  },
+  {
+    slug: "ma",
+    label: "ま行",
+    dreamSlugs: ["lost", "window", "festival", "map", "mirror", "green", "forest", "money"]
+  },
+  {
+    slug: "ya",
+    label: "や行",
+    dreamSlugs: ["mountain", "snow", "friend"]
+  },
+  {
+    slug: "ra",
+    label: "ら行",
+    dreamSlugs: ["line-message", "running-dream", "rainbow", "library", "travel", "ring"]
+  },
+  {
+    slug: "wa",
+    label: "わ行",
+    dreamSlugs: ["laughing", "white"]
+  }
+] as const;
+
 export const affiliateCategories = [
   "占い本",
   "タロットカード",

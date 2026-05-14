@@ -52,3 +52,291 @@ a {
     @apply text-xs font-black tracking-[0.18em] text-mintnight;
   }
 }
+
+.tarot-stage {
+  position: relative;
+  width: min(100%, 320px);
+  height: 240px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  background:
+    radial-gradient(circle at 50% 44%, rgba(244, 201, 93, 0.28), transparent 24%),
+    radial-gradient(circle at 24% 22%, rgba(244, 114, 182, 0.24), transparent 28%),
+    linear-gradient(135deg, rgba(75, 35, 95, 0.08), rgba(255, 248, 242, 0.92));
+  overflow: hidden;
+}
+
+.tarot-orbit {
+  position: absolute;
+  inset: 26px;
+  border-radius: 999px;
+  opacity: 0.82;
+}
+
+.tarot-orbit span {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: #f4c95d;
+  box-shadow: 0 0 16px rgba(244, 201, 93, 0.9);
+}
+
+.tarot-orbit span:nth-child(1) {
+  left: 18%;
+  top: 26%;
+}
+
+.tarot-orbit span:nth-child(2) {
+  right: 20%;
+  top: 18%;
+}
+
+.tarot-orbit span:nth-child(3) {
+  bottom: 20%;
+  left: 48%;
+}
+
+.tarot-orbit.is-drawing {
+  animation: orbit-glow 1.1s ease-in-out infinite;
+}
+
+.tarot-deck {
+  position: relative;
+  width: 122px;
+  height: 176px;
+  perspective: 900px;
+}
+
+.tarot-card {
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+  box-shadow: 0 18px 44px rgba(75, 35, 95, 0.24);
+}
+
+.tarot-card-back {
+  border: 1px solid rgba(255, 255, 255, 0.82);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent),
+    repeating-linear-gradient(45deg, rgba(244, 201, 93, 0.22) 0 5px, transparent 5px 11px),
+    linear-gradient(145deg, #4b235f, #a855f7 62%, #f472b6);
+}
+
+.tarot-card-left {
+  transform: rotate(-9deg) translateX(-22px);
+}
+
+.tarot-card-right {
+  transform: rotate(9deg) translateX(22px);
+}
+
+.tarot-card-main {
+  transform-style: preserve-3d;
+  transition: transform 0.72s cubic-bezier(0.2, 0.8, 0.22, 1);
+}
+
+.tarot-card-main.is-revealed {
+  transform: rotateY(180deg) translateY(-6px);
+}
+
+.tarot-card-face {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  backface-visibility: hidden;
+}
+
+.tarot-card-face-back {
+  gap: 8px;
+  color: #f4c95d;
+  border: 1px solid rgba(255, 255, 255, 0.82);
+  background:
+    radial-gradient(circle at 50% 35%, rgba(244, 201, 93, 0.32), transparent 32%),
+    linear-gradient(145deg, #4b235f, #a855f7 62%, #f472b6);
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+}
+
+.tarot-card-face-front {
+  padding: 14px;
+  text-align: center;
+  color: #4b235f;
+  background:
+    radial-gradient(circle at 50% 24%, rgba(244, 201, 93, 0.28), transparent 28%),
+    linear-gradient(180deg, #fff8f2, #f8e7ff);
+  transform: rotateY(180deg);
+}
+
+.tarot-card-face-front strong {
+  font-size: 1.25rem;
+  line-height: 1.35;
+}
+
+.tarot-deck.is-shuffling .tarot-card-left {
+  animation: shuffle-left 0.38s ease-in-out infinite alternate;
+}
+
+.tarot-deck.is-shuffling .tarot-card-right {
+  animation: shuffle-right 0.38s ease-in-out infinite alternate;
+}
+
+.tarot-deck.is-shuffling .tarot-card-main {
+  animation: draw-pulse 0.48s ease-in-out infinite alternate;
+}
+
+.omikuji-stage {
+  position: relative;
+  width: min(100%, 300px);
+  height: 210px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  background:
+    radial-gradient(circle at 50% 48%, rgba(244, 201, 93, 0.24), transparent 28%),
+    linear-gradient(135deg, rgba(31, 122, 118, 0.08), rgba(255, 248, 242, 0.95));
+  overflow: hidden;
+}
+
+.omikuji-box {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 112px;
+  height: 132px;
+  border-radius: 8px 8px 16px 16px;
+  color: #f4c95d;
+  background: linear-gradient(145deg, #4b235f, #a855f7 70%, #f472b6);
+  box-shadow: 0 18px 42px rgba(75, 35, 95, 0.24);
+}
+
+.omikuji-box span {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #fff8f2;
+}
+
+.omikuji-box.is-shaking {
+  animation: omikuji-shake 0.18s ease-in-out infinite;
+}
+
+.omikuji-stick {
+  position: absolute;
+  z-index: 1;
+  top: 88px;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 128px;
+  border-radius: 999px;
+  background: #fff8f2;
+  color: #4b235f;
+  border: 2px solid rgba(244, 201, 93, 0.75);
+  box-shadow: 0 12px 28px rgba(75, 35, 95, 0.14);
+  font-weight: 900;
+  transform: translateY(92px);
+  transition: transform 0.55s cubic-bezier(0.2, 0.8, 0.22, 1);
+}
+
+.omikuji-stick.is-drawing {
+  animation: stick-peek 0.38s ease-in-out infinite alternate;
+}
+
+.omikuji-stick.is-out {
+  transform: translateY(26px);
+}
+
+.result-pop {
+  animation: result-pop 0.5s cubic-bezier(0.2, 0.8, 0.22, 1) both;
+}
+
+@keyframes shuffle-left {
+  from {
+    transform: rotate(-15deg) translateX(-34px) translateY(4px);
+  }
+  to {
+    transform: rotate(-4deg) translateX(-16px) translateY(-4px);
+  }
+}
+
+@keyframes shuffle-right {
+  from {
+    transform: rotate(15deg) translateX(34px) translateY(-4px);
+  }
+  to {
+    transform: rotate(4deg) translateX(16px) translateY(4px);
+  }
+}
+
+@keyframes draw-pulse {
+  from {
+    transform: translateY(0) scale(1);
+  }
+  to {
+    transform: translateY(-8px) scale(1.035);
+  }
+}
+
+@keyframes orbit-glow {
+  0%,
+  100% {
+    transform: rotate(0deg) scale(1);
+    opacity: 0.72;
+  }
+  50% {
+    transform: rotate(10deg) scale(1.04);
+    opacity: 1;
+  }
+}
+
+@keyframes omikuji-shake {
+  0%,
+  100% {
+    transform: rotate(-4deg) translateX(-2px);
+  }
+  50% {
+    transform: rotate(4deg) translateX(2px);
+  }
+}
+
+@keyframes stick-peek {
+  from {
+    transform: translateY(92px);
+  }
+  to {
+    transform: translateY(62px);
+  }
+}
+
+@keyframes result-pop {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tarot-orbit.is-drawing,
+  .tarot-deck.is-shuffling .tarot-card-left,
+  .tarot-deck.is-shuffling .tarot-card-right,
+  .tarot-deck.is-shuffling .tarot-card-main,
+  .omikuji-box.is-shaking,
+  .omikuji-stick.is-drawing,
+  .result-pop {
+    animation: none;
+  }
+
+  .tarot-card-main,
+  .omikuji-stick {
+    transition: none;
+  }
+}

@@ -44,6 +44,13 @@ export function TarotDraw() {
             <span />
             <span />
           </div>
+          <div className={`tarot-fan ${isDrawing ? "is-drawing" : ""}`} aria-hidden>
+            <span />
+            <span />
+            <span />
+            <span />
+            <span />
+          </div>
           <div className={`tarot-deck ${isDrawing ? "is-shuffling" : ""}`} aria-live="polite">
             <div className="tarot-card tarot-card-back tarot-card-left" />
             <div className="tarot-card tarot-card-back tarot-card-right" />

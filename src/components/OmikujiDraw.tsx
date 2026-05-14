@@ -31,6 +31,12 @@ export function OmikujiDraw() {
         </p>
 
         <div className="omikuji-stage mx-auto mt-6" aria-hidden>
+          <div className={`omikuji-sparkles ${isDrawing ? "is-active" : result ? "is-active" : ""}`}>
+            <span />
+            <span />
+            <span />
+            <span />
+          </div>
           <div className={`omikuji-box ${isDrawing ? "is-shaking" : ""}`}>
             <Sparkles size={26} />
             <span>運</span>

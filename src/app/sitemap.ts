@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { articles, articleThemes, categories, dreamCategories, dreams, sportsFortunes, zodiacSigns } from "@/lib/content";
+import { daysInMonth, monthlyFortunes, seasonalFortunes } from "@/lib/calendarFortunes";
 import { siteConfig } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -17,9 +18,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/dreams",
     "/dreams/category",
     "/sports",
+    "/monthly",
+    "/seasonal",
     "/lucky-color",
     "/lucky-item",
     "/articles",
+    "/share/result",
+    "/operation-guide",
     "/contact",
     "/about",
     "/privacy",
@@ -32,6 +37,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...dreams.map((item) => `/dreams/${item.slug}`),
     ...dreamCategories.map((item) => `/dreams/category/${item.slug}`),
     ...sportsFortunes.map((item) => `/sports/${item.slug}`),
+    ...monthlyFortunes.map((item) => `/monthly/${item.month}`),
+    ...seasonalFortunes.map((item) => `/seasonal/${item.slug}`),
+    ...Array.from({ length: 12 }, (_, index) => index + 1).flatMap((month) =>
+      Array.from({ length: daysInMonth(month) }, (_, dayIndex) => `/birthday/${month}/${dayIndex + 1}`)
+    ),
     ...articles.map((item) => `/articles/${item.slug}`),
     ...articleThemes.map((item) => `/articles/category/${item.slug}`),
     ...categories.map((item) => `/categories/${item.slug}`)

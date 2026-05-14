@@ -1,6 +1,6 @@
 "use client";
 
-import { LineChart, MessageCircle, Twitter } from "lucide-react";
+import { Copy, ImageIcon, MessageCircle, Twitter } from "lucide-react";
 import { useMemo } from "react";
 
 type Props = {
@@ -20,6 +20,7 @@ export function ShareButtons({ title, text, url }: Props) {
     return "";
   }, [url]);
   const shareText = makeShareText(title, text);
+  const cardUrl = `/share/result?title=${encodeURIComponent(title)}&text=${encodeURIComponent(text)}`;
 
   const xUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
   const lineUrl = `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareText)}`;
@@ -34,12 +35,16 @@ export function ShareButtons({ title, text, url }: Props) {
         <MessageCircle size={16} aria-hidden />
         LINEで送る
       </a>
+      <a className="btn-secondary" href={cardUrl}>
+        <ImageIcon size={16} aria-hidden />
+        カード表示
+      </a>
       <button
         className="btn-secondary"
         type="button"
         onClick={() => navigator.clipboard?.writeText(`${shareText}\n${shareUrl}`)}
       >
-        <LineChart size={16} aria-hidden />
+        <Copy size={16} aria-hidden />
         文言コピー
       </button>
     </div>

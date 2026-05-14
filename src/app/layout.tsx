@@ -8,16 +8,18 @@ import { JsonLd } from "@/components/JsonLd";
 import { buildMetadata } from "@/lib/seo";
 import { entertainmentNotice, siteConfig } from "@/lib/site";
 
-export const metadata: Metadata = buildMetadata({
-  title: "Uranai Garden｜毎日楽しめる占い・診断・おみくじ",
-  description: siteConfig.description,
+export const metadata: Metadata = {
+  ...buildMetadata({
+    title: "Uranai Garden｜毎日楽しめる占い・診断・おみくじ",
+    description: siteConfig.description
+  }),
   manifest: "/manifest.webmanifest",
   appleWebApp: {
     capable: true,
     title: "Uranai Garden",
     statusBarStyle: "default"
   }
-});
+};
 
 export const viewport: Viewport = {
   width: "device-width",

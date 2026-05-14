@@ -1,8 +1,7 @@
 export const siteConfig = {
   name: process.env.NEXT_PUBLIC_SITE_NAME ?? "Uranai Garden",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://uranai-garden.example.com",
-  description:
-    "毎日使える占い・診断・おみくじを楽しめる、スマホ向けエンタメ占いサイトです。",
+  description: "毎日使える占い・診断・おみくじを楽しめる、スマホ向けエンタメ占いサイトです。",
   lineCtaUrl: process.env.NEXT_PUBLIC_LINE_CTA_URL ?? "https://line.me/R/",
   emailCtaUrl: process.env.NEXT_PUBLIC_EMAIL_CTA_URL ?? "/contact",
   adsenseClient: process.env.NEXT_PUBLIC_ADSENSE_CLIENT ?? "ca-pub-3214842113322197",
@@ -14,6 +13,7 @@ export const entertainmentNotice =
 
 export const mainNav = [
   { href: "/today", label: "今日の運勢" },
+  { href: "/monthly", label: "月別占い" },
   { href: "/zodiac", label: "星座占い" },
   { href: "/tarot", label: "タロット" },
   { href: "/omikuji", label: "おみくじ" },
@@ -23,10 +23,12 @@ export const mainNav = [
 ] as const;
 
 export const popularLinks = [
-  { href: "/today", title: "今日の運勢", label: "毎朝チェック" },
+  { href: "/today", title: "今日の運勢", label: "毎日チェック" },
   { href: "/tarot", title: "タロット1枚引き", label: "SNSで人気" },
   { href: "/diagnosis/love", title: "恋愛タイプ診断", label: "診断" },
+  { href: "/monthly", title: "月別占い", label: "SEO強化" },
+  { href: "/dreams", title: "夢占い辞典", label: "検索流入" },
   { href: "/sports", title: "スポーツ占い", label: "新着" },
-  { href: "/dreams", title: "夢占い検索", label: "検索流入" },
+  { href: "/birthday/5/14", title: "誕生日占い", label: "365日対応" },
   { href: "/lucky-color", title: "ラッキーカラー診断", label: "再訪問" }
 ] as const;

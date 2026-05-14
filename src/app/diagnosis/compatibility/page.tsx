@@ -5,15 +5,19 @@ import { PageHero } from "@/components/PageHero";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "相性診断｜名前で今日の相性スコアをチェック",
-  description: "2人の名前を入力して、今日の相性スコアと前向きな関わり方のヒントを表示します。",
+  title: "相性診断｜名前と星座で今日の相性スコアをチェック",
+  description: "2人の名前、星座、関係性から今日の相性スコアを表示します。恋愛、友達、仕事仲間、家族の関係をエンタメとして楽しめます。",
   path: "/diagnosis/compatibility"
 });
 
 export default function CompatibilityPage() {
   return (
     <main className="page-shell space-y-8">
-      <PageHero kicker="COMPATIBILITY" title="相性診断" description="相性は決めつけではなく、関わり方を楽しむヒントとして受け取ってください。" />
+      <PageHero
+        kicker="COMPATIBILITY"
+        title="相性診断"
+        description="名前と星座から、今日の相性スコアと関係を育てるヒントを表示します。"
+      />
       <CompatibilityForm />
       <AdSlot placement="result-bottom" />
       <AffiliateCards />

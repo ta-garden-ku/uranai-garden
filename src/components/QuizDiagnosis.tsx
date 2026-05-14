@@ -32,7 +32,7 @@ export function QuizDiagnosis({ title, description, questions, results }: Props)
   const question = questions[current];
 
   const result = useMemo(() => {
-    const total = answers.reduce((sum, value) => sum + (value ?? 0), 0);
+    const total = answers.reduce<number>((sum, value) => sum + (value ?? 0), 0);
     return results[total % results.length];
   }, [answers, results]);
 

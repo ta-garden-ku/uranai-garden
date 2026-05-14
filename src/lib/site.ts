@@ -26,6 +26,7 @@ export const popularLinks = [
   { href: "/today", title: "今日の運勢", label: "毎日チェック" },
   { href: "/tarot", title: "タロット1枚引き", label: "SNSで人気" },
   { href: "/diagnosis/love", title: "恋愛タイプ診断", label: "診断" },
+  { href: "/diagnosis/sports-luck", title: "スポーツ勝負運診断", label: "新診断" },
   { href: "/monthly", title: "月別占い", label: "SEO強化" },
   { href: "/dreams", title: "夢占い辞典", label: "検索流入" },
   { href: "/sports", title: "スポーツ占い", label: "新着" },

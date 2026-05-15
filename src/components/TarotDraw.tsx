@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { RotateCcw, Sparkles } from "lucide-react";
 import { ResultCard } from "@/components/ResultCard";
+import { TarotCardArt } from "@/components/TarotCardArt";
 import { tarotCards } from "@/lib/content";
 
 type DrawState = {
@@ -78,6 +79,7 @@ export function TarotDraw() {
                 <span className="text-xs font-black text-mintnight">
                   {draw?.reversed ? "REVERSED" : "UPRIGHT"}
                 </span>
+                <TarotCardArt slug={card?.slug} reversed={draw?.reversed} />
                 <strong>{card?.name ?? "?"}</strong>
               </div>
             </div>

@@ -8,6 +8,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { PageHero } from "@/components/PageHero";
 import { ShareButtons } from "@/components/ShareButtons";
 import { SportsIllustration } from "@/components/SportsIllustration";
+import { SportsMatchDay } from "@/components/SportsMatchDay";
 import { SportsTeamFortune } from "@/components/SportsTeamFortune";
 import { buildSportsDailyFortune, getSportsProfile, sportsProfiles } from "@/lib/sports";
 import { breadcrumbJsonLd, buildMetadata } from "@/lib/seo";
@@ -45,6 +46,7 @@ export default async function SportsDetailPage({ params }: Props) {
         ])}
       />
       <PageHero kicker="SPORTS FORTUNE" title={sport.name} description={sport.description} />
+      <SportsMatchDay />
 
       <section className="sports-hero-panel overflow-hidden rounded-lg bg-white/88 p-5 shadow-soft">
         <div className="grid gap-5 lg:grid-cols-[260px_1fr] lg:items-center">

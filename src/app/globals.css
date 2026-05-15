@@ -483,6 +483,125 @@ a {
   animation: progress-shine 1.25s ease-in-out infinite;
 }
 
+.matchday-panel {
+  position: relative;
+  isolation: isolate;
+}
+
+.matchday-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 78% 18%, rgba(244, 201, 93, 0.2), transparent 26%),
+    linear-gradient(135deg, #4b235f 0%, #6d2e8a 48%, #1f7a76 100%);
+}
+
+.matchday-bg::before {
+  content: "";
+  position: absolute;
+  inset: 18% -8% auto;
+  height: 220px;
+  border: 2px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  transform: rotate(-7deg);
+}
+
+.matchday-bg span {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: #f4c95d;
+  box-shadow: 0 0 20px rgba(244, 201, 93, 0.9);
+  animation: crowd-pulse 1.4s ease-in-out infinite alternate;
+}
+
+.matchday-bg span:nth-child(1) {
+  left: 12%;
+  top: 18%;
+}
+
+.matchday-bg span:nth-child(2) {
+  right: 20%;
+  top: 32%;
+  animation-delay: 0.2s;
+}
+
+.matchday-bg span:nth-child(3) {
+  left: 44%;
+  bottom: 18%;
+  animation-delay: 0.38s;
+}
+
+.matchday-input {
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.94);
+  padding: 12px 14px;
+  color: #4b235f;
+  font-weight: 800;
+}
+
+.matchday-chip {
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  background: rgba(255, 255, 255, 0.12);
+  padding: 9px 13px;
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 0.86rem;
+  font-weight: 900;
+  transition:
+    transform 0.18s ease,
+    background 0.18s ease;
+}
+
+.matchday-chip:hover,
+.matchday-chip.is-active {
+  transform: translateY(-1px);
+  background: #fff8f2;
+  color: #4b235f;
+}
+
+.matchday-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.matchday-card::before {
+  content: "";
+  position: absolute;
+  right: -42px;
+  top: -42px;
+  width: 140px;
+  height: 140px;
+  border-radius: 999px;
+  background: radial-gradient(circle, var(--sport-accent, #a855f7), transparent 68%);
+  opacity: 0.2;
+}
+
+.matchday-score {
+  display: flex;
+  align-items: end;
+  gap: 8px;
+}
+
+.matchday-score span {
+  color: var(--sport-accent, #a855f7);
+  font-size: 5.5rem;
+  font-weight: 1000;
+  line-height: 0.88;
+  letter-spacing: 0;
+}
+
+.matchday-score small {
+  padding-bottom: 10px;
+  color: #4b235f;
+  font-weight: 900;
+}
+
 .tarot-deck.is-shuffling .tarot-card-left {
   animation: shuffle-left 0.38s ease-in-out infinite alternate;
 }
@@ -1133,6 +1252,17 @@ a {
   }
 }
 
+@keyframes crowd-pulse {
+  from {
+    opacity: 0.38;
+    transform: scale(0.7);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .tarot-orbit.is-drawing,
   .tarot-particles.is-active span,
@@ -1164,7 +1294,8 @@ a {
   .sports-illustration .sports-orbit-line,
   .sports-card:hover .sports-illustration,
   .sports-hero-panel .sports-illustration,
-  .sports-meter::after {
+  .sports-meter::after,
+  .matchday-bg span {
     animation: none;
   }
 

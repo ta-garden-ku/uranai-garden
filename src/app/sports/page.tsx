@@ -4,7 +4,7 @@ import { AdSlot } from "@/components/AdSlot";
 import { AffiliateCards } from "@/components/AffiliateCards";
 import { PageHero } from "@/components/PageHero";
 import { SportsIllustration } from "@/components/SportsIllustration";
-import { SportsTeamFortune } from "@/components/SportsTeamFortune";
+import { SportsMatchDay } from "@/components/SportsMatchDay";
 import { buildSportsDailyFortune, sportsProfiles } from "@/lib/sports";
 import { buildMetadata } from "@/lib/seo";
 
@@ -23,7 +23,7 @@ export default function SportsPage() {
         title="スポーツ占い"
         description="試合前、観戦前、部活や趣味スポーツの前に。今日の勝負運、集中力、チーム運をエンタメとして楽しめます。"
       />
-      <SportsTeamFortune sportSlug="baseball" />
+      <SportsMatchDay />
       <AdSlot placement="article-top" />
       <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {sportsProfiles.map((sport) => {

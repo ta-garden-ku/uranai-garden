@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import type { CSSProperties } from "react";
 import { RefreshCcw, Trophy } from "lucide-react";
-import { buildSportsDailyFortune, proTeamGroups, sportsProfiles } from "@/lib/sports";
+import { buildSportsDailyFortune, getTeamGroupsForSport, sportsProfiles } from "@/lib/sports";
 
 type Props = {
   sportSlug: string;
@@ -18,7 +18,8 @@ function scoreLabel(score: number) {
 
 export function SportsTeamFortune({ sportSlug }: Props) {
   const sport = sportsProfiles.find((item) => item.slug === sportSlug) ?? sportsProfiles[0];
-  const defaultTeam = sportSlug === "baseball" ? "阪神タイガース" : "応援チーム";
+  const teamGroups = useMemo(() => getTeamGroupsForSport(sportSlug), [sportSlug]);
+  const defaultTeam = teamGroups[0]?.teams[0] ?? "応援チーム";
   const [teamName, setTeamName] = useState(defaultTeam);
   const [customTeam, setCustomTeam] = useState("");
   const [nonce, setNonce] = useState(0);
@@ -45,7 +46,7 @@ export function SportsTeamFortune({ sportSlug }: Props) {
           <label className="grid gap-2 text-sm font-bold text-plum">
             チームを選ぶ
             <select className="rounded-lg border border-plum/15 bg-white px-4 py-3" value={teamName} onChange={(event) => setTeamName(event.target.value)}>
-              {proTeamGroups.map((group) => (
+              {teamGroups.map((group) => (
                 <optgroup key={group.label} label={group.label}>
                   {group.teams.map((team) => (
                     <option key={team} value={team}>

@@ -386,6 +386,103 @@ a {
   height: 100%;
 }
 
+.sports-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.sports-card::after {
+  content: "";
+  position: absolute;
+  inset: auto -20% -40% 30%;
+  height: 80px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(244, 201, 93, 0.24), transparent 64%);
+  pointer-events: none;
+}
+
+.sports-illustration {
+  display: grid;
+  place-items: center;
+  width: 190px;
+  max-width: 100%;
+  aspect-ratio: 1;
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 40% 25%, rgba(255, 255, 255, 0.88), transparent 30%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.84), rgba(255, 248, 242, 0.58));
+  box-shadow: 0 18px 34px rgba(75, 35, 95, 0.12);
+}
+
+.sports-illustration.is-compact {
+  width: 104px;
+  border-radius: 22px;
+}
+
+.sports-illustration svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.sports-illustration .sports-orbit-line {
+  stroke-dasharray: 12 12;
+  animation: sports-dash 2.1s linear infinite;
+}
+
+.sports-card:hover .sports-illustration,
+.sports-hero-panel .sports-illustration {
+  animation: sports-float 1.8s ease-in-out infinite alternate;
+}
+
+.sports-widget {
+  position: relative;
+}
+
+.sports-widget::before {
+  content: "";
+  position: absolute;
+  inset: -60px -80px auto auto;
+  width: 180px;
+  height: 180px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.18), transparent 66%);
+  pointer-events: none;
+}
+
+.sports-score-card {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 82% 20%, rgba(255, 255, 255, 0.24), transparent 26%),
+    linear-gradient(135deg, #4b235f, var(--sport-accent, #a855f7));
+}
+
+.sports-score-card::after {
+  content: "";
+  position: absolute;
+  right: -20px;
+  bottom: -28px;
+  width: 120px;
+  height: 120px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  box-shadow: inset 0 0 30px rgba(255, 255, 255, 0.16);
+}
+
+.sports-meter {
+  position: relative;
+  overflow: hidden;
+}
+
+.sports-meter::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.66), transparent);
+  animation: progress-shine 1.25s ease-in-out infinite;
+}
+
 .tarot-deck.is-shuffling .tarot-card-left {
   animation: shuffle-left 0.38s ease-in-out infinite alternate;
 }
@@ -1021,6 +1118,21 @@ a {
   }
 }
 
+@keyframes sports-dash {
+  to {
+    stroke-dashoffset: -48;
+  }
+}
+
+@keyframes sports-float {
+  from {
+    transform: translateY(3px) rotate(-1deg);
+  }
+  to {
+    transform: translateY(-7px) rotate(1deg);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .tarot-orbit.is-drawing,
   .tarot-particles.is-active span,
@@ -1048,7 +1160,11 @@ a {
   .quiz-slide,
   .diagnosis-analyzing,
   .diagnosis-crystal,
-  .diagnosis-rings span {
+  .diagnosis-rings span,
+  .sports-illustration .sports-orbit-line,
+  .sports-card:hover .sports-illustration,
+  .sports-hero-panel .sports-illustration,
+  .sports-meter::after {
     animation: none;
   }
 

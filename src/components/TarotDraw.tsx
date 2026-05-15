@@ -76,11 +76,11 @@ export function TarotDraw() {
                 <span>TAROT</span>
               </div>
               <div className="tarot-card-face tarot-card-face-front">
-                <span className="text-xs font-black text-mintnight">
+                <span className="tarot-position-label">
                   {draw?.reversed ? "REVERSED" : "UPRIGHT"}
                 </span>
                 <TarotCardArt slug={card?.slug} reversed={draw?.reversed} />
-                <strong>{card?.name ?? "?"}</strong>
+                <strong className="tarot-card-title">{card?.name ?? "?"}</strong>
               </div>
             </div>
           </div>

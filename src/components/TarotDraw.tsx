@@ -103,6 +103,16 @@ export function TarotDraw() {
             title={`${card.name}${draw?.reversed ? " 逆位置" : " 正位置"}`}
             subtitle={draw?.reversed ? card.reversed : card.upright}
           >
+            <div className="tarot-result-preview">
+              <TarotCardArt slug={card.slug} reversed={draw?.reversed} compact />
+              <div>
+                <p className="kicker">DRAWN CARD</p>
+                <h3 className="mt-2 text-xl font-black text-plum">{card.name}</h3>
+                <p className="mt-2 text-sm leading-7 text-plum/70">
+                  クラシックなタロットカードの絵柄と一緒に、今日のヒントを前向きに読み取ります。
+                </p>
+              </div>
+            </div>
             <div className="grid gap-3 sm:grid-cols-3">
               <div className="rounded-lg bg-paper p-4">
                 <p className="kicker">恋愛</p>

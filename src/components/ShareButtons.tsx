@@ -7,20 +7,24 @@ type Props = {
   title: string;
   text: string;
   url?: string;
+  tarotSlug?: string;
+  tarotPosition?: "upright" | "reversed";
 };
 
 export function makeShareText(title: string, text: string) {
   return `${title}\n${text}\n#UranaiGarden #今日の運勢`;
 }
 
-export function ShareButtons({ title, text, url }: Props) {
+export function ShareButtons({ title, text, url, tarotSlug, tarotPosition }: Props) {
   const shareUrl = useMemo(() => {
+    if (url && /^https?:\/\//.test(url)) return url;
+    if (url && typeof window !== "undefined") return `${window.location.origin}${url}`;
     if (url) return url;
     if (typeof window !== "undefined") return window.location.href;
     return "";
   }, [url]);
   const shareText = makeShareText(title, text);
-  const cardUrl = `/share/result?title=${encodeURIComponent(title)}&text=${encodeURIComponent(text)}`;
+  const cardUrl = `/share/result?title=${encodeURIComponent(title)}&text=${encodeURIComponent(text)}${tarotSlug ? `&tarot=${encodeURIComponent(tarotSlug)}&position=${tarotPosition ?? "upright"}` : ""}`;
 
   const xUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
   const lineUrl = `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareText)}`;

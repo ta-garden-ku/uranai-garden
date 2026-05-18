@@ -8,9 +8,12 @@ type Props = {
   title: string;
   subtitle: string;
   children: ReactNode;
+  shareUrl?: string;
+  tarotSlug?: string;
+  tarotPosition?: "upright" | "reversed";
 };
 
-export function ResultCard({ title, subtitle, children }: Props) {
+export function ResultCard({ title, subtitle, children, shareUrl, tarotSlug, tarotPosition }: Props) {
   return (
     <section className="result-card overflow-hidden rounded-lg border border-white/80 bg-white/90 shadow-soft">
       <div className="result-card-hero p-5 text-white">
@@ -29,7 +32,7 @@ export function ResultCard({ title, subtitle, children }: Props) {
       <div className="space-y-4 p-5">
         {children}
         <p className="rounded-lg bg-paper p-3 text-xs text-plum/65">{entertainmentNotice}</p>
-        <ShareButtons title={title} text={subtitle} />
+        <ShareButtons title={title} text={subtitle} url={shareUrl} tarotSlug={tarotSlug} tarotPosition={tarotPosition} />
       </div>
     </section>
   );

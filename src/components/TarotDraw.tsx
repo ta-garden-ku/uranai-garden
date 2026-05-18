@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { RotateCcw, Sparkles } from "lucide-react";
 import { ResultCard } from "@/components/ResultCard";
 import { TarotCardArt } from "@/components/TarotCardArt";
@@ -18,6 +19,9 @@ export function TarotDraw() {
   const [phase, setPhase] = useState<DrawPhase>("idle");
   const card = draw ? tarotCards[draw.index] : null;
   const isDrawing = phase !== "idle";
+  const resultPosition = draw?.reversed ? "reversed" : "upright";
+  const resultPath = card ? `/tarot/${card.slug}/${resultPosition}` : "/tarot";
+  const shareUrl = typeof window !== "undefined" ? `${window.location.origin}${resultPath}` : resultPath;
 
   function handleDraw() {
     if (isDrawing) return;
@@ -101,7 +105,10 @@ export function TarotDraw() {
         <div className="result-pop result-pop-luminous">
           <ResultCard
             title={`${card.name}${draw?.reversed ? " 逆位置" : " 正位置"}`}
-            subtitle={draw?.reversed ? card.reversed : card.upright}
+            subtitle={`今日のカードは${card.name}。${draw?.reversed ? card.reversed : card.upright}`}
+            shareUrl={shareUrl}
+            tarotSlug={card.slug}
+            tarotPosition={resultPosition}
           >
             <div className="tarot-result-preview">
               <TarotCardArt slug={card.slug} reversed={draw?.reversed} compact />
@@ -126,6 +133,13 @@ export function TarotDraw() {
                 <p className="kicker">人間関係</p>
                 <p className="mt-2 text-sm leading-7">{card.relationships}</p>
               </div>
+            </div>
+            <div className="rounded-lg bg-honey/20 p-4">
+              <p className="kicker">LUCKY ACTION</p>
+              <p className="mt-2 text-sm font-bold leading-7 text-plum">{card.action}</p>
+              <Link className="btn-secondary mt-4" href={resultPath}>
+                このカードの詳しい解説を見る
+              </Link>
             </div>
           </ResultCard>
         </div>

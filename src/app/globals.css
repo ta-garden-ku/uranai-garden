@@ -310,6 +310,7 @@ a {
 }
 
 .tarot-card-face-front {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -322,6 +323,21 @@ a {
     radial-gradient(circle at 50% 18%, rgba(244, 201, 93, 0.35), transparent 26%),
     linear-gradient(180deg, #fff8f2, #f4e1c7 46%, #f8e7ff);
   transform: rotateY(180deg);
+}
+
+.tarot-card-face-front::after {
+  content: "";
+  position: absolute;
+  inset: -30%;
+  z-index: 1;
+  background: linear-gradient(115deg, transparent 34%, rgba(255, 255, 255, 0.58) 48%, transparent 62%);
+  opacity: 0;
+  transform: translateX(-55%) rotate(8deg);
+  pointer-events: none;
+}
+
+.tarot-card-main.is-revealed .tarot-card-face-front::after {
+  animation: tarot-card-shine 1.05s ease 0.22s both;
 }
 
 .tarot-position-label {
@@ -359,6 +375,7 @@ a {
 .tarot-card-art {
   position: relative;
   width: 100%;
+  aspect-ratio: 346 / 600;
   min-height: 0;
   flex: 1 1 auto;
   overflow: hidden;
@@ -446,6 +463,32 @@ a {
     radial-gradient(circle at 14% 18%, rgba(244, 201, 93, 0.22), transparent 30%),
     linear-gradient(135deg, rgba(255, 248, 242, 0.95), rgba(248, 231, 255, 0.78));
   padding: 14px;
+}
+
+.tarot-meaning-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px;
+  align-items: center;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.tarot-meaning-card:hover {
+  box-shadow: 0 20px 42px rgba(75, 35, 95, 0.16);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 520px) {
+  .tarot-result-preview,
+  .tarot-meaning-card {
+    grid-template-columns: 1fr;
+  }
+
+  .tarot-card-art.is-compact {
+    margin-inline: auto;
+  }
 }
 
 .mystic-illustration {
@@ -1079,6 +1122,20 @@ a {
   }
 }
 
+@keyframes tarot-card-shine {
+  0% {
+    opacity: 0;
+    transform: translateX(-55%) rotate(8deg);
+  }
+  35% {
+    opacity: 0.86;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(55%) rotate(8deg);
+  }
+}
+
 @keyframes tarot-particle-rise {
   0%,
   100% {
@@ -1361,6 +1418,7 @@ a {
   .tarot-deck.is-shuffling .tarot-card-right,
   .tarot-deck.is-shuffling .tarot-card-main,
   .tarot-card-main.is-revealed,
+  .tarot-card-main.is-revealed .tarot-card-face-front::after,
   .omikuji-stage::before,
   .omikuji-sparkles.is-active span,
   .omikuji-box.is-shaking,

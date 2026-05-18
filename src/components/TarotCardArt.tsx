@@ -38,10 +38,6 @@ const tarotArt: Record<string, TarotArt> = {
   world: { file: "RWS_Tarot_21_World.jpg", roman: "XXI", label: "THE WORLD", accent: "#34d399" }
 };
 
-function getImageUrl(file: string) {
-  return `https://commons.wikimedia.org/wiki/Special:Redirect/file/${encodeURIComponent(file)}?width=520`;
-}
-
 export function TarotCardArt({ slug = "fool", reversed = false, compact = false }: Props) {
   const art = tarotArt[slug] ?? tarotArt.fool;
 
@@ -50,7 +46,7 @@ export function TarotCardArt({ slug = "fool", reversed = false, compact = false 
       className={`tarot-card-art ${compact ? "is-compact" : ""} ${reversed ? "is-reversed" : ""}`}
       style={
         {
-          "--tarot-image": `url("${getImageUrl(art.file)}")`,
+          "--tarot-image": `url("/images/tarot/${art.file}")`,
           "--tarot-accent": art.accent
         } as CSSProperties & Record<"--tarot-image" | "--tarot-accent", string>
       }

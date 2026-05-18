@@ -25,11 +25,12 @@ export const mainNav = [
 export const popularLinks = [
   { href: "/today", title: "今日の運勢", label: "毎日チェック" },
   { href: "/tarot", title: "タロット1枚引き", label: "SNSで人気" },
-  { href: "/diagnosis/love", title: "恋愛タイプ診断", label: "診断" },
+  { href: "/articles/tarot-phone-fortune-safe-guide", title: "タロット後の相談ガイド", label: "PR導線" },
+  { href: "/articles/lucky-color-power-stone-accessory-guide", title: "色別アクセサリーガイド", label: "収益記事" },
   { href: "/diagnosis/sports-luck", title: "スポーツ勝負運診断", label: "新診断" },
-  { href: "/monthly", title: "月別占い", label: "SEO強化" },
+  { href: "/articles/dream-dictionary-seo-growth-plan", title: "夢占い辞典の育て方", label: "SEO強化" },
   { href: "/dreams", title: "夢占い辞典", label: "検索流入" },
   { href: "/sports", title: "スポーツ占い", label: "新着" },
-  { href: "/birthday/5/14", title: "誕生日占い", label: "365日対応" },
+  { href: "/articles/a8-affiliate-program-selection-sheet", title: "A8案件選定表", label: "収益化" },
   { href: "/lucky-color", title: "ラッキーカラー診断", label: "再訪問" }
 ] as const;

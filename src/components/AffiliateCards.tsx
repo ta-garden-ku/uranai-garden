@@ -6,10 +6,11 @@ type Props = {
   title?: string;
   items?: AffiliateItem[];
   category?: string;
+  tags?: string[];
 };
 
-export function AffiliateCards({ title = "おすすめ商品", items, category }: Props) {
-  const displayItems = items ?? (category ? getAffiliateItems(category, 3) : affiliateItems.slice(0, 3));
+export function AffiliateCards({ title = "おすすめ商品", items, category, tags }: Props) {
+  const displayItems = items ?? getAffiliateItems({ category, tags }, 3);
   const filledItems = displayItems.length > 0 ? displayItems : affiliateItems.slice(0, 3);
 
   return (

@@ -58,7 +58,7 @@ export default async function ArticleDetailPage({ params }: Props) {
               ))}
             </div>
           </section>
-          <AffiliateCards title="記事下のおすすめ商品枠" />
+          <AffiliateCards title="記事下のおすすめ商品枠" category={article.category} tags={article.tags} />
           <AdSlot placement="article-bottom" />
           <RelatedArticles currentSlug={article.slug} />
           <TodayReturnCta />

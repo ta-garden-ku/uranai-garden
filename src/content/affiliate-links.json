@@ -1,50 +1,52 @@
 {
-  "disclosure": "この枠には広告・PRリンクが含まれます。",
+  "disclosure": "この枠には広告・PRリンクが含まれます。占い・診断結果はエンタメ目的で、サービスや商品の効果を保証するものではありません。",
   "items": [
     {
-      "id": "tarot-starter",
-      "category": "タロットカード",
-      "title": "初心者向けタロットカードセット",
-      "description": "解説書つきで1枚引きを始めやすい定番タイプ。",
-      "priceLabel": "2,000円台〜",
-      "badge": "初心者向け",
-      "url": "https://example.com/affiliate/tarot-starter"
+      "id": "coconala-phone-fortune",
+      "category": "電話占い",
+      "tags": ["タロット", "恋愛", "占い相談", "記事下", "今日の運勢"],
+      "title": "ココナラ電話占い",
+      "description": "気持ちを整理したい時に、占い師へ電話で相談できるサービス。1分単位で試しやすい案件です。",
+      "priceLabel": "1分100円〜",
+      "badge": "PR・占い相談",
+      "url": "https://px.a8.net/svt/ejp?a8mat=4B3TF1+EXMG1E+2PEO+BYLJM",
+      "imageUrl": "https://www22.a8.net/svt/bgt?aid=260518573903&wid=001&eno=01&mid=s00000012624002037000&mc=1",
+      "trackingPixelUrl": "https://www14.a8.net/0.gif?a8mat=4B3TF1+EXMG1E+2PEO+BYLJM"
     },
     {
-      "id": "fortune-book",
-      "category": "占い本",
-      "title": "毎日読める占い入門書",
-      "description": "星座・数秘・タロットを軽く学びたい人向け。",
-      "priceLabel": "1,500円台〜",
-      "badge": "読み物",
-      "url": "https://example.com/affiliate/fortune-book"
+      "id": "spacea-love-fortune",
+      "category": "電話占い",
+      "tags": ["恋愛", "恋愛診断", "相性診断", "占い相談"],
+      "title": "恋愛応援スペーシア",
+      "description": "恋愛の気持ちを整理したい方向けの電話占いサービス。初回特典があるため、試しやすい案件です。",
+      "priceLabel": "初回特典あり",
+      "badge": "PR・恋愛相談",
+      "url": "https://px.a8.net/svt/ejp?a8mat=4B3TF1+EZEQUQ+3SKE+5ZEMQ",
+      "imageUrl": "https://www29.a8.net/svt/bgt?aid=260518573906&wid=001&eno=01&mid=s00000017699001017000&mc=1",
+      "trackingPixelUrl": "https://www15.a8.net/0.gif?a8mat=4B3TF1+EZEQUQ+3SKE+5ZEMQ"
     },
     {
-      "id": "lucky-goods",
+      "id": "hariqua-spiritual-jewelry",
+      "category": "パワーストーン",
+      "tags": ["ラッキーカラー", "ラッキーアイテム", "アクセサリー", "開運グッズ", "記事下"],
+      "title": "Hariqua スピリチュアルジュエリー",
+      "description": "天然石やクリスタルを使ったジュエリー。ラッキーカラーや今日の気分に合わせて、アクセサリー感覚で楽しめます。",
+      "priceLabel": "天然石ジュエリー",
+      "badge": "PR・天然石",
+      "url": "https://px.a8.net/svt/ejp?a8mat=4B3TF1+FEW1CQ+5N7K+5YJRM",
+      "imageUrl": "https://www22.a8.net/svt/bgt?aid=260518573932&wid=002&eno=01&mid=s00000026336001004000&mc=1",
+      "trackingPixelUrl": "https://www13.a8.net/0.gif?a8mat=4B3TF1+FEW1CQ+5N7K+5YJRM"
+    },
+    {
+      "id": "color-diagnosis-goods",
       "category": "開運グッズ",
-      "title": "デスクに置ける開運モチーフ小物",
-      "description": "気分を整えるインテリアとして取り入れやすい小物。",
-      "priceLabel": "1,000円台〜",
-      "badge": "ギフト",
-      "url": "https://example.com/affiliate/lucky-goods"
-    },
-    {
-      "id": "planner",
-      "category": "手帳",
-      "title": "月のリズムで書ける手帳",
-      "description": "毎日の振り返りや願いごとのメモに使いやすい手帳。",
-      "priceLabel": "1,800円台〜",
-      "badge": "再訪問導線",
-      "url": "https://example.com/affiliate/planner"
-    },
-    {
-      "id": "perfume",
-      "category": "香水",
-      "title": "気分で選べるミニ香水セット",
-      "description": "ラッキーカラーや診断結果に合わせて楽しめる小容量タイプ。",
-      "priceLabel": "3,000円台〜",
-      "badge": "美容",
-      "url": "https://example.com/affiliate/perfume"
+      "tags": ["ラッキーカラー", "カラー診断", "ラッキーアイテム"],
+      "title": "カラー診断と不思議グッズ",
+      "description": "無料カラー診断や雑貨を楽しめるサービス。ラッキーカラー診断のあとに、気分に合う小物を探したい方向けです。",
+      "priceLabel": "無料診断あり",
+      "badge": "PR・カラー診断",
+      "url": "https://px.a8.net/svt/ejp?a8mat=4B3TF1+FH9RRU+GE+61C2Q",
+      "trackingPixelUrl": "https://www18.a8.net/0.gif?a8mat=4B3TF1+FH9RRU+GE+61C2Q"
     }
   ]
 }

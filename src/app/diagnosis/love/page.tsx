@@ -16,7 +16,7 @@ export default function LoveDiagnosisPage() {
     <main className="page-shell space-y-8">
       <QuizDiagnosis {...content} />
       <AdSlot placement="result-bottom" />
-      <AffiliateCards />
+      <AffiliateCards category="恋愛" title="恋愛の気持ちを整理したい方向けPR" />
     </main>
   );
 }

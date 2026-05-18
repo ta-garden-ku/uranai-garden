@@ -38,7 +38,7 @@ export default function TarotPage() {
         </div>
       </section>
       <AdSlot placement="result-bottom" />
-      <AffiliateCards category="タロットカード" title="タロットカードのおすすめ枠" />
+      <AffiliateCards category="タロット" title="タロット後に読みたいおすすめPR" />
     </main>
   );
 }

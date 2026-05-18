@@ -15,7 +15,7 @@ export default function LuckyColorPage() {
     <main className="page-shell space-y-8">
       <QuizDiagnosis {...diagnosisContent.luckyColor} />
       <AdSlot placement="result-bottom" />
-      <AffiliateCards />
+      <AffiliateCards category="ラッキーカラー" title="色や天然石を楽しむおすすめPR" />
     </main>
   );
 }

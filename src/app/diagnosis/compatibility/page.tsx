@@ -20,7 +20,7 @@ export default function CompatibilityPage() {
       />
       <CompatibilityForm />
       <AdSlot placement="result-bottom" />
-      <AffiliateCards />
+      <AffiliateCards category="恋愛" title="相性や恋愛の気持ちを整理したい方向けPR" />
     </main>
   );
 }

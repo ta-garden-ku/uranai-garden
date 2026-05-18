@@ -160,7 +160,7 @@ export default async function TarotDetailPage({ params }: Props) {
         </article>
       </section>
 
-      <AffiliateCards category="タロットカード" title="タロットカード・占い本のおすすめ" />
+      <AffiliateCards category="タロット" title="タロット後に読みたいおすすめPR" />
       <RelatedArticles currentSlug="tarot-major-arcana-meaning" />
       <TodayReturnCta />
     </main>

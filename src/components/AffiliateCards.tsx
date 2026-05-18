@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { ExternalLink } from "lucide-react";
 import { affiliateDisclosure, affiliateItems, getAffiliateItems, type AffiliateItem } from "@/lib/affiliate";
 
@@ -24,8 +25,13 @@ export function AffiliateCards({ title = "おすすめ商品", items, category }
             key={item.id}
             href={item.url}
             className="rounded-lg border border-white/80 bg-white/85 p-4 shadow-soft transition hover:-translate-y-0.5 hover:bg-white"
-            rel="sponsored noopener noreferrer"
+            target="_blank"
+            rel="sponsored nofollow noopener noreferrer"
           >
+            {item.imageUrl && (
+              // A8の広告素材画像です。altは商品名にして、広告でも内容が伝わるようにします。
+              <img className="mb-3 aspect-[6/5] w-full rounded-md object-cover" src={item.imageUrl} alt={item.title} loading="lazy" />
+            )}
             <span className="inline-flex rounded-full bg-honey/25 px-2 py-1 text-xs font-bold text-plum">
               {item.badge}
             </span>
@@ -35,6 +41,7 @@ export function AffiliateCards({ title = "おすすめ商品", items, category }
               <span>{item.priceLabel}</span>
               <ExternalLink aria-hidden size={16} />
             </div>
+            {item.trackingPixelUrl && <img src={item.trackingPixelUrl} width="1" height="1" alt="" loading="lazy" />}
           </a>
         ))}
       </div>

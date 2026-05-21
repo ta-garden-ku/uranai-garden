@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { ExternalLink } from "lucide-react";
 import { affiliateDisclosure, affiliateItems, getAffiliateItems, type AffiliateItem } from "@/lib/affiliate";
+import { siteConfig } from "@/lib/site";
 
 type Props = {
   title?: string;
@@ -10,6 +11,8 @@ type Props = {
 };
 
 export function AffiliateCards({ title = "おすすめ商品", items, category, tags }: Props) {
+  if (!siteConfig.showAffiliateCards) return null;
+
   const displayItems = items ?? getAffiliateItems({ category, tags }, 3);
   const filledItems = displayItems.length > 0 ? displayItems : affiliateItems.slice(0, 3);
 

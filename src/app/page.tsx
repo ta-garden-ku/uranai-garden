@@ -6,6 +6,7 @@ import { AffiliateCards } from "@/components/AffiliateCards";
 import { PopularContent, RelatedArticles } from "@/components/ContentBlocks";
 import { SubscribeCta, TodayReturnCta } from "@/components/CTABlocks";
 import { DreamDictionaryIntro, PopularDreams } from "@/components/DreamBlocks";
+import { EditorialGuide } from "@/components/EditorialGuide";
 import { JsonLd } from "@/components/JsonLd";
 import { MysticIllustration } from "@/components/MysticIllustration";
 import { PageHero } from "@/components/PageHero";
@@ -71,6 +72,7 @@ export default function HomePage() {
 
       <div className="page-shell space-y-10">
         <AdSlot placement="article-top" label="トップページ上部広告" />
+        <EditorialGuide variant="home" />
         <DreamDictionaryIntro />
         <PopularDreams />
 

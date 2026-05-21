@@ -7,6 +7,7 @@ type PageMeta = {
   path?: string;
   image?: string;
   type?: "website" | "article";
+  noIndex?: boolean;
 };
 
 export function buildMetadata({
@@ -14,7 +15,8 @@ export function buildMetadata({
   description,
   path = "/",
   image = "/images/hero-garden.png",
-  type = "website"
+  type = "website",
+  noIndex = false
 }: PageMeta): Metadata {
   const url = new URL(path, siteConfig.url).toString();
   const imageUrl = new URL(image, siteConfig.url).toString();
@@ -22,6 +24,10 @@ export function buildMetadata({
   return {
     title,
     description,
+    robots: {
+      index: !noIndex,
+      follow: true
+    },
     alternates: { canonical: url },
     openGraph: {
       title,

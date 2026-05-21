@@ -5,7 +5,10 @@ export const siteConfig = {
   lineCtaUrl: process.env.NEXT_PUBLIC_LINE_CTA_URL ?? "https://line.me/R/",
   emailCtaUrl: process.env.NEXT_PUBLIC_EMAIL_CTA_URL ?? "/contact",
   adsenseClient: process.env.NEXT_PUBLIC_ADSENSE_CLIENT ?? "ca-pub-3214842113322197",
-  gaId: process.env.NEXT_PUBLIC_GA_ID
+  gaId: process.env.NEXT_PUBLIC_GA_ID,
+  adsenseReviewMode: process.env.NEXT_PUBLIC_ADSENSE_REVIEW_MODE !== "false",
+  showAdPlaceholders: process.env.NEXT_PUBLIC_SHOW_AD_PLACEHOLDERS === "true",
+  showAffiliateCards: process.env.NEXT_PUBLIC_SHOW_AFFILIATE_CARDS === "true"
 } as const;
 
 export const entertainmentNotice =

@@ -1,6 +1,7 @@
 import { AdSlot } from "@/components/AdSlot";
 import { DreamSearch } from "@/components/DreamSearch";
 import { DreamCategoryLinks, DreamKanaIndex, PopularDreams } from "@/components/DreamBlocks";
+import { EditorialGuide } from "@/components/EditorialGuide";
 import { PageHero } from "@/components/PageHero";
 import { buildMetadata } from "@/lib/seo";
 
@@ -15,6 +16,7 @@ export default function DreamsPage() {
     <main className="page-shell space-y-8">
       <PageHero kicker="DREAM DICTIONARY" title="夢占い辞典" description="夢に出てきたキーワードを検索して、今の気持ちをやさしく読み解きましょう。" />
       <AdSlot placement="article-top" />
+      <EditorialGuide variant="dreams" />
       <PopularDreams />
       <DreamCategoryLinks />
       <DreamKanaIndex />

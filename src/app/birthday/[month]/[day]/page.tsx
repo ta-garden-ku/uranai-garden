@@ -6,6 +6,7 @@ import { PageHero } from "@/components/PageHero";
 import { ShareButtons } from "@/components/ShareButtons";
 import { daysInMonth, getBirthdayFortune } from "@/lib/calendarFortunes";
 import { buildMetadata } from "@/lib/seo";
+import { siteConfig } from "@/lib/site";
 
 type Props = { params: Promise<{ month: string; day: string }> };
 
@@ -30,7 +31,8 @@ export async function generateMetadata({ params }: Props) {
   return buildMetadata({
     title: `${monthNumber}月${dayNumber}日生まれの誕生日占い`,
     description: `${monthNumber}月${dayNumber}日生まれの性格、恋愛傾向、ラッキーカラーをエンタメとして楽しめる誕生日占いです。`,
-    path: `/birthday/${monthNumber}/${dayNumber}`
+    path: `/birthday/${monthNumber}/${dayNumber}`,
+    noIndex: siteConfig.adsenseReviewMode
   });
 }
 

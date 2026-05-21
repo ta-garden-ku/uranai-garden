@@ -8,7 +8,8 @@ import { buildMetadata } from "@/lib/seo";
 export const metadata = buildMetadata({
   title: "SNSシェア用結果カード",
   description: "占い結果をSNSで見せやすいカード風に表示します。",
-  path: "/share/result"
+  path: "/share/result",
+  noIndex: true
 });
 
 type Props = {

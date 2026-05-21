@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { AdSlot } from "@/components/AdSlot";
 import { AffiliateCards } from "@/components/AffiliateCards";
+import { EditorialGuide } from "@/components/EditorialGuide";
 import { PageHero } from "@/components/PageHero";
 import { TarotCardArt } from "@/components/TarotCardArt";
 import { TarotDraw } from "@/components/TarotDraw";
@@ -17,6 +18,7 @@ export default function TarotPage() {
   return (
     <main className="page-shell space-y-8">
       <PageHero kicker="TAROT" title="タロット1枚引き" description="正位置・逆位置のメッセージを、前向きなセルフリフレクションとして楽しめます。" />
+      <EditorialGuide variant="tarot" />
       <TarotDraw />
       <section className="soft-card">
         <p className="kicker">CARD MEANINGS</p>

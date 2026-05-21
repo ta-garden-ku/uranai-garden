@@ -14,6 +14,8 @@ const labels: Record<AdSlotProps["placement"], string> = {
 };
 
 export function AdSlot({ placement, label = labels[placement] }: AdSlotProps) {
+  if (!siteConfig.showAdPlaceholders) return null;
+
   return (
     <aside
       className="rounded-lg border border-dashed border-plum/20 bg-white/70 p-4 text-center text-sm text-plum/70"

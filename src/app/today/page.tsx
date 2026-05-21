@@ -3,6 +3,7 @@ import { AdSlot } from "@/components/AdSlot";
 import { AffiliateCards } from "@/components/AffiliateCards";
 import { PopularContent } from "@/components/ContentBlocks";
 import { SubscribeCta } from "@/components/CTABlocks";
+import { EditorialGuide } from "@/components/EditorialGuide";
 import { PageHero } from "@/components/PageHero";
 import { ShareButtons } from "@/components/ShareButtons";
 import { zodiacSigns } from "@/lib/content";
@@ -30,6 +31,7 @@ export default function TodayPage() {
         description="日付と星座をもとに、毎日変わる12星座ランキングと運勢をお届けします。結果はエンタメとして楽しんでください。"
       />
       <AdSlot placement="article-top" />
+      <EditorialGuide variant="today" />
       <section className="soft-card">
         <p className="kicker">DAILY RANKING</p>
         <h2 className="mt-2 text-2xl font-bold text-plum">今日の12星座ランキング</h2>

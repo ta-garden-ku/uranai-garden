@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { articles, articleThemes, categories, dreamCategories, dreams, tarotCards, zodiacSigns } from "@/lib/content";
+import { articles, articleThemes, categories, dreamCategories, dreams, popularDreamSlugs, tarotCards, zodiacSigns } from "@/lib/content";
 import { daysInMonth, monthlyFortunes, seasonalFortunes } from "@/lib/calendarFortunes";
 import { sportsProfiles } from "@/lib/sports";
 import { siteConfig } from "@/lib/site";
@@ -28,7 +28,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/lucky-color",
     "/lucky-item",
     "/articles",
-    "/share/result",
     "/operation-guide",
     "/contact",
     "/about",
@@ -37,7 +36,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/ads-affiliate-policy"
   ];
 
-  const dynamicPaths = [
+  const reviewDreamPaths = dreams
+    .filter((item) => popularDreamSlugs.includes(item.slug as (typeof popularDreamSlugs)[number]))
+    .map((item) => `/dreams/${item.slug}`);
+
+  const fullDynamicPaths = [
     ...zodiacSigns.map((item) => `/zodiac/${item.slug}`),
     ...dreams.map((item) => `/dreams/${item.slug}`),
     ...dreamCategories.map((item) => `/dreams/category/${item.slug}`),
@@ -52,6 +55,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...articleThemes.map((item) => `/articles/category/${item.slug}`),
     ...categories.map((item) => `/categories/${item.slug}`)
   ];
+
+  const reviewDynamicPaths = [
+    ...zodiacSigns.map((item) => `/zodiac/${item.slug}`),
+    ...reviewDreamPaths,
+    ...dreamCategories.map((item) => `/dreams/category/${item.slug}`),
+    ...sportsProfiles.map((item) => `/sports/${item.slug}`),
+    ...monthlyFortunes.map((item) => `/monthly/${item.month}`),
+    ...seasonalFortunes.map((item) => `/seasonal/${item.slug}`),
+    ...articles.map((item) => `/articles/${item.slug}`),
+    ...articleThemes.map((item) => `/articles/category/${item.slug}`),
+    ...categories.map((item) => `/categories/${item.slug}`)
+  ];
+
+  const dynamicPaths = siteConfig.adsenseReviewMode ? reviewDynamicPaths : fullDynamicPaths;
 
   return [...staticPaths, ...dynamicPaths].map((path) => {
     const changeFrequency = path === "/today" || path.startsWith("/zodiac") ? "daily" : "weekly";

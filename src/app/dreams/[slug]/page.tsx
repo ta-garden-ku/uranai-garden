@@ -6,8 +6,9 @@ import { RelatedArticles } from "@/components/ContentBlocks";
 import { JsonLd } from "@/components/JsonLd";
 import { PageHero } from "@/components/PageHero";
 import { ShareButtons } from "@/components/ShareButtons";
-import { dreams } from "@/lib/content";
+import { dreams, popularDreamSlugs } from "@/lib/content";
 import { breadcrumbJsonLd, buildMetadata, faqJsonLd } from "@/lib/seo";
+import { siteConfig } from "@/lib/site";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -22,7 +23,8 @@ export async function generateMetadata({ params }: Props) {
   return buildMetadata({
     title: `${dream.keyword}の夢占い｜意味・恋愛・仕事の前向きなヒント`,
     description: dream.meaning,
-    path: `/dreams/${dream.slug}`
+    path: `/dreams/${dream.slug}`,
+    noIndex: siteConfig.adsenseReviewMode && !popularDreamSlugs.includes(dream.slug as (typeof popularDreamSlugs)[number])
   });
 }
 

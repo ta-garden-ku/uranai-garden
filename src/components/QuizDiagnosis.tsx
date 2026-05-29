@@ -121,6 +121,17 @@ export function QuizDiagnosis({ title, description, questions, results }: Props)
 
       {done && (
         <div className="result-pop result-pop-luminous">
+          <div className="diagnosis-result-altar mb-4 rounded-lg bg-paper p-5 text-center" aria-hidden>
+            <div className="diagnosis-result-symbol mx-auto">
+              <Sparkles size={36} />
+            </div>
+            <div className="diagnosis-result-stars">
+              <span />
+              <span />
+              <span />
+              <span />
+            </div>
+          </div>
           <ResultCard title={result.title} subtitle={result.body}>
             <p className="leading-7">
               今日のヒントは、結果を決めつけるものではなく、自分の気持ちを眺める鏡としてお楽しみください。

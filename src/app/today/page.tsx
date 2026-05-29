@@ -3,6 +3,7 @@ import { AdSlot } from "@/components/AdSlot";
 import { AffiliateCards } from "@/components/AffiliateCards";
 import { PopularContent } from "@/components/ContentBlocks";
 import { SubscribeCta } from "@/components/CTABlocks";
+import { DailyFortuneReveal } from "@/components/DailyFortuneReveal";
 import { EditorialGuide } from "@/components/EditorialGuide";
 import { PageHero } from "@/components/PageHero";
 import { ShareButtons } from "@/components/ShareButtons";
@@ -22,6 +23,18 @@ export const revalidate = 3600;
 export default function TodayPage() {
   const date = todayKey();
   const fortunes = buildDailyFortunes(zodiacSigns.map((sign) => sign.slug), date);
+  const fortunePreviews = fortunes.map((fortune) => {
+    const sign = zodiacSigns.find((item) => item.slug === fortune.sign);
+    return {
+      sign: fortune.sign,
+      name: sign?.name ?? fortune.sign,
+      rank: fortune.rank,
+      score: fortune.score,
+      color: fortune.luckyColor,
+      item: fortune.luckyItem,
+      message: fortune.message
+    };
+  });
 
   return (
     <main className="page-shell space-y-8">
@@ -32,6 +45,7 @@ export default function TodayPage() {
       />
       <AdSlot placement="article-top" />
       <EditorialGuide variant="today" />
+      <DailyFortuneReveal fortunes={fortunePreviews} />
       <section className="soft-card">
         <p className="kicker">DAILY RANKING</p>
         <h2 className="mt-2 text-2xl font-bold text-plum">今日の12星座ランキング</h2>

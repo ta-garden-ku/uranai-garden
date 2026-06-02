@@ -6,11 +6,9 @@ import { RelatedArticles } from "@/components/ContentBlocks";
 import { TodayReturnCta } from "@/components/CTABlocks";
 import { JsonLd } from "@/components/JsonLd";
 import { PageHero } from "@/components/PageHero";
-import { ShareButtons } from "@/components/ShareButtons";
 import { SportsIllustration } from "@/components/SportsIllustration";
-import { SportsMatchDay } from "@/components/SportsMatchDay";
 import { SportsTeamFortune } from "@/components/SportsTeamFortune";
-import { buildSportsDailyFortune, getSportsProfile, sportsProfiles } from "@/lib/sports";
+import { getSportsProfile, sportsProfiles } from "@/lib/sports";
 import { breadcrumbJsonLd, buildMetadata } from "@/lib/seo";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -24,7 +22,7 @@ export async function generateMetadata({ params }: Props) {
   const sport = getSportsProfile(slug);
   if (!sport) return {};
   return buildMetadata({
-    title: `${sport.name}｜試合前に見たい今日の勝負運`,
+    title: `${sport.name}｜チームを選んで今日の勝負運を占う`,
     description: sport.description,
     path: `/sports/${sport.slug}`
   });
@@ -34,7 +32,6 @@ export default async function SportsDetailPage({ params }: Props) {
   const { slug } = await params;
   const sport = getSportsProfile(slug);
   if (!sport) notFound();
-  const fortune = buildSportsDailyFortune(sport.slug, sport.shortName);
 
   return (
     <main className="page-shell space-y-8">
@@ -46,19 +43,17 @@ export default async function SportsDetailPage({ params }: Props) {
         ])}
       />
       <PageHero kicker="SPORTS FORTUNE" title={sport.name} description={sport.description} />
-      <SportsMatchDay />
 
       <section className="sports-hero-panel overflow-hidden rounded-lg bg-white/88 p-5 shadow-soft">
         <div className="grid gap-5 lg:grid-cols-[260px_1fr] lg:items-center">
           <SportsIllustration sport={sport} />
           <div>
-            <p className="kicker">TODAY GAME MOOD</p>
-            <h2 className="mt-2 text-3xl font-black text-plum">今日の勝負運 {fortune.score}点</h2>
-            <p className="mt-3 text-lg font-bold text-orchid">テーマは「{fortune.mood}」</p>
+            <p className="kicker">SELECT AND REVEAL</p>
+            <h2 className="mt-2 text-3xl font-black text-plum">チームを選んでから結果を見る</h2>
             <p className="mt-3 rounded-lg bg-paper p-4 text-sm leading-7 text-plum/75">{sport.message}</p>
             <div className="mt-4 flex flex-wrap gap-2">
-              <Link className="btn-primary" href="/diagnosis/sports-luck">
-                スポーツ勝負運診断へ
+              <Link className="btn-primary" href="#team-fortune">
+                この競技で占う
               </Link>
               <Link className="btn-secondary" href="/sports">
                 他の競技を見る
@@ -68,7 +63,9 @@ export default async function SportsDetailPage({ params }: Props) {
         </div>
       </section>
 
-      <SportsTeamFortune sportSlug={sport.slug} />
+      <div id="team-fortune">
+        <SportsTeamFortune sportSlug={sport.slug} />
+      </div>
 
       <article className="soft-card space-y-5">
         <div className="grid gap-3 sm:grid-cols-2">
@@ -98,7 +95,6 @@ export default async function SportsDetailPage({ params }: Props) {
           このスポーツ占いはエンタメ目的です。試合結果、選手成績、健康状態、賭け事などを予測・保証するものではありません。
           応援前やプレー前の気分づくりとしてお楽しみください。
         </p>
-        <ShareButtons title={sport.name} text={`${sport.shortName}の今日の勝負運は${fortune.score}点。${fortune.chant}`} />
       </article>
       <AdSlot placement="result-bottom" />
       <AffiliateCards />

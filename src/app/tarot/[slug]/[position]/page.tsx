@@ -10,6 +10,7 @@ import { ShareButtons } from "@/components/ShareButtons";
 import { TarotCardArt } from "@/components/TarotCardArt";
 import { tarotCards } from "@/lib/content";
 import { articleJsonLd, breadcrumbJsonLd, buildMetadata, faqJsonLd } from "@/lib/seo";
+import { siteConfig } from "@/lib/site";
 
 type Position = "upright" | "reversed";
 type Props = { params: Promise<{ slug: string; position: Position }> };
@@ -44,7 +45,8 @@ export async function generateMetadata({ params }: Props) {
     title: `${card.name}${label}の意味｜恋愛・仕事・人間関係のタロット解説`,
     description: `${card.name}${label}の意味を、恋愛・仕事・人間関係・今日の行動ヒントとして前向きに解説します。`,
     path: `/tarot/${card.slug}/${position}`,
-    type: "article"
+    type: "article",
+    noIndex: siteConfig.adsenseReviewMode
   });
 }
 

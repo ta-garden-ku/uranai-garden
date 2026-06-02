@@ -8,7 +8,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticPaths = [
     "",
     "/today",
-    "/zodiac",
     "/birthday",
     "/tarot",
     "/omikuji",
@@ -16,19 +15,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/diagnosis/love",
     "/diagnosis/personality",
     "/diagnosis/compatibility",
-    "/diagnosis/work",
-    "/diagnosis/money",
-    "/diagnosis/oshi",
     "/diagnosis/sports-luck",
     "/dreams",
     "/dreams/category",
     "/sports",
-    "/monthly",
-    "/seasonal",
     "/lucky-color",
     "/lucky-item",
     "/articles",
-    "/operation-guide",
     "/contact",
     "/about",
     "/privacy",
@@ -57,15 +50,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   const reviewDynamicPaths = [
-    ...zodiacSigns.map((item) => `/zodiac/${item.slug}`),
     ...reviewDreamPaths,
-    ...dreamCategories.map((item) => `/dreams/category/${item.slug}`),
-    ...sportsProfiles.map((item) => `/sports/${item.slug}`),
-    ...monthlyFortunes.map((item) => `/monthly/${item.month}`),
-    ...seasonalFortunes.map((item) => `/seasonal/${item.slug}`),
-    ...articles.map((item) => `/articles/${item.slug}`),
-    ...articleThemes.map((item) => `/articles/category/${item.slug}`),
-    ...categories.map((item) => `/categories/${item.slug}`)
+    ...dreamCategories.slice(0, 6).map((item) => `/dreams/category/${item.slug}`),
+    ...sportsProfiles.slice(0, 4).map((item) => `/sports/${item.slug}`),
+    ...articles
+      .filter((item) => item.category !== "affiliate" && item.category !== "monetization")
+      .slice(0, 8)
+      .map((item) => `/articles/${item.slug}`),
+    ...articleThemes
+      .filter((item) => ["tarot", "dream", "love", "daily", "sports"].includes(item.slug))
+      .map((item) => `/articles/category/${item.slug}`),
+    ...categories
+      .filter((item) => ["seo", "sports"].includes(item.slug))
+      .map((item) => `/categories/${item.slug}`)
   ];
 
   const dynamicPaths = siteConfig.adsenseReviewMode ? reviewDynamicPaths : fullDynamicPaths;

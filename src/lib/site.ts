@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: process.env.NEXT_PUBLIC_SITE_NAME ?? "Uranai Garden",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://uranai-garden.example.com",
-  description: "毎日使える占い・診断・おみくじを楽しめる、スマホ向けエンタメ占いサイトです。",
+  description: "今日の運勢、タロット、夢占い、診断をスマホで気軽に楽しめるエンタメ占いサイトです。結果は断定ではなく、毎日の気分を整えるヒントとして読めます。",
   lineCtaUrl: process.env.NEXT_PUBLIC_LINE_CTA_URL ?? "https://line.me/R/",
   emailCtaUrl: process.env.NEXT_PUBLIC_EMAIL_CTA_URL ?? "/contact",
   adsenseClient: process.env.NEXT_PUBLIC_ADSENSE_CLIENT ?? "ca-pub-3214842113322197",
@@ -27,13 +27,13 @@ export const mainNav = [
 
 export const popularLinks = [
   { href: "/today", title: "今日の運勢", label: "毎日チェック" },
-  { href: "/tarot", title: "タロット1枚引き", label: "SNSで人気" },
-  { href: "/articles/tarot-phone-fortune-safe-guide", title: "タロット後の相談ガイド", label: "PR導線" },
-  { href: "/articles/lucky-color-power-stone-accessory-guide", title: "色別アクセサリーガイド", label: "収益記事" },
-  { href: "/diagnosis/sports-luck", title: "スポーツ勝負運診断", label: "新診断" },
-  { href: "/articles/dream-dictionary-seo-growth-plan", title: "夢占い辞典の育て方", label: "SEO強化" },
-  { href: "/dreams", title: "夢占い辞典", label: "検索流入" },
-  { href: "/sports", title: "スポーツ占い", label: "新着" },
-  { href: "/articles/a8-affiliate-program-selection-sheet", title: "A8案件選定表", label: "収益化" },
-  { href: "/lucky-color", title: "ラッキーカラー診断", label: "再訪問" }
+  { href: "/tarot", title: "タロット1枚引き", label: "人気" },
+  { href: "/dreams", title: "夢占い辞典", label: "辞典" },
+  { href: "/omikuji", title: "おみくじ", label: "気軽" },
+  { href: "/diagnosis/love", title: "恋愛タイプ診断", label: "診断" },
+  { href: "/diagnosis/personality", title: "性格タイプ診断", label: "診断" },
+  { href: "/lucky-color", title: "ラッキーカラー診断", label: "毎日" },
+  { href: "/sports", title: "スポーツ占い", label: "試合前" },
+  { href: "/articles/common-dreams-30", title: "よく見る夢30選", label: "読み物" },
+  { href: "/about", title: "運営者情報", label: "方針" }
 ] as const;

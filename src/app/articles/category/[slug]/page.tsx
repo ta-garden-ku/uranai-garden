@@ -4,6 +4,7 @@ import { AdSlot } from "@/components/AdSlot";
 import { PageHero } from "@/components/PageHero";
 import { articles, articleThemes } from "@/lib/content";
 import { buildMetadata } from "@/lib/seo";
+import { siteConfig } from "@/lib/site";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -18,7 +19,8 @@ export async function generateMetadata({ params }: Props) {
   return buildMetadata({
     title: `${theme.name}一覧｜Uranai Garden`,
     description: theme.description,
-    path: `/articles/category/${theme.slug}`
+    path: `/articles/category/${theme.slug}`,
+    noIndex: siteConfig.adsenseReviewMode && theme.slug === "lucky-goods"
   });
 }
 

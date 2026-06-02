@@ -6,6 +6,7 @@ import { PageHero } from "@/components/PageHero";
 import { ShareButtons } from "@/components/ShareButtons";
 import { monthlyFortunes } from "@/lib/calendarFortunes";
 import { buildMetadata } from "@/lib/seo";
+import { siteConfig } from "@/lib/site";
 
 type Props = { params: Promise<{ month: string }> };
 
@@ -20,7 +21,8 @@ export async function generateMetadata({ params }: Props) {
   return buildMetadata({
     title: `${item.name}｜恋愛運・仕事運・金運・ラッキーカラー`,
     description: item.description,
-    path: `/monthly/${item.month}`
+    path: `/monthly/${item.month}`,
+    noIndex: siteConfig.adsenseReviewMode
   });
 }
 

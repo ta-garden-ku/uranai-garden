@@ -6,6 +6,7 @@ import { PageHero } from "@/components/PageHero";
 import { ShareButtons } from "@/components/ShareButtons";
 import { seasonalFortunes } from "@/lib/calendarFortunes";
 import { buildMetadata } from "@/lib/seo";
+import { siteConfig } from "@/lib/site";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -20,7 +21,8 @@ export async function generateMetadata({ params }: Props) {
   return buildMetadata({
     title: `${item.name}｜${item.months}の開運ヒント`,
     description: item.description,
-    path: `/seasonal/${item.slug}`
+    path: `/seasonal/${item.slug}`,
+    noIndex: siteConfig.adsenseReviewMode
   });
 }
 

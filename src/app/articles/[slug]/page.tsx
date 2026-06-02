@@ -7,6 +7,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { PageHero } from "@/components/PageHero";
 import { articles } from "@/lib/content";
 import { articleJsonLd, breadcrumbJsonLd, buildMetadata, faqJsonLd } from "@/lib/seo";
+import { siteConfig } from "@/lib/site";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -22,7 +23,10 @@ export async function generateMetadata({ params }: Props) {
     title: article.title,
     description: article.description,
     path: `/articles/${article.slug}`,
-    type: "article"
+    type: "article",
+    noIndex:
+      siteConfig.adsenseReviewMode &&
+      (article.category === "affiliate" || article.category === "monetization" || article.tags.includes("PR"))
   });
 }
 

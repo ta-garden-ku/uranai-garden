@@ -8,6 +8,7 @@ import { ShareButtons } from "@/components/ShareButtons";
 import { zodiacSigns } from "@/lib/content";
 import { buildDailyFortunes, todayKey } from "@/lib/fortune";
 import { breadcrumbJsonLd, buildMetadata } from "@/lib/seo";
+import { siteConfig } from "@/lib/site";
 
 type Props = { params: Promise<{ sign: string }> };
 
@@ -24,7 +25,8 @@ export async function generateMetadata({ params }: Props) {
   return buildMetadata({
     title: `${sign.name}の今日の運勢｜日替わり星座占い`,
     description: `${sign.name}の今日の運勢、ランキング、ラッキーカラー、ラッキーアイテムを日替わりでチェック。`,
-    path: `/zodiac/${sign.slug}`
+    path: `/zodiac/${sign.slug}`,
+    noIndex: siteConfig.adsenseReviewMode
   });
 }
 

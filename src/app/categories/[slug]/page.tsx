@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { PageHero } from "@/components/PageHero";
 import { articles, categories } from "@/lib/content";
 import { buildMetadata } from "@/lib/seo";
+import { siteConfig } from "@/lib/site";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -17,7 +18,10 @@ export async function generateMetadata({ params }: Props) {
   return buildMetadata({
     title: `${category.name}の記事一覧｜Uranai Garden`,
     description: category.description,
-    path: `/categories/${category.slug}`
+    path: `/categories/${category.slug}`,
+    noIndex:
+      siteConfig.adsenseReviewMode &&
+      (category.slug === "affiliate" || category.slug === "monetization")
   });
 }
 

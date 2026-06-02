@@ -1326,6 +1326,25 @@ a {
   animation: result-pop 0.42s cubic-bezier(0.2, 0.8, 0.22, 1) both;
 }
 
+.diagnosis-start,
+.compatibility-reading {
+  position: relative;
+  overflow: hidden;
+  animation: result-pop 0.42s cubic-bezier(0.2, 0.8, 0.22, 1) both;
+}
+
+.diagnosis-start::before,
+.compatibility-reading::before {
+  content: "";
+  position: absolute;
+  inset: -30% -20% auto;
+  height: 180px;
+  background:
+    radial-gradient(circle at 38% 44%, rgba(244, 201, 93, 0.2), transparent 28%),
+    radial-gradient(circle at 66% 48%, rgba(168, 85, 247, 0.16), transparent 30%);
+  pointer-events: none;
+}
+
 .diagnosis-rings {
   position: absolute;
   inset: 40px 0 auto;

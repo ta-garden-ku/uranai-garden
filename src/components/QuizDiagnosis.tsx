@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { ChevronLeft, Sparkles } from "lucide-react";
 import { ResultCard } from "@/components/ResultCard";
 
@@ -24,8 +24,11 @@ type Props = {
 export function QuizDiagnosis({ title, description, questions, results }: Props) {
   const [answers, setAnswers] = useState<Array<number | null>>(Array(questions.length).fill(null));
   const [current, setCurrent] = useState(0);
+  const [started, setStarted] = useState(false);
   const [done, setDone] = useState(false);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const analyzeTimerRef = useRef<number | null>(null);
+  const nextTimerRef = useRef<number | null>(null);
 
   const answeredCount = answers.filter((answer) => answer !== null).length;
   const progress = Math.round((answeredCount / questions.length) * 100);
@@ -36,17 +39,26 @@ export function QuizDiagnosis({ title, description, questions, results }: Props)
     return results[total % results.length];
   }, [answers, results]);
 
+  useEffect(() => {
+    return () => {
+      if (analyzeTimerRef.current) window.clearTimeout(analyzeTimerRef.current);
+      if (nextTimerRef.current) window.clearTimeout(nextTimerRef.current);
+    };
+  }, []);
+
   function chooseAnswer(optionIndex: number) {
     setAnswers((currentAnswers) => currentAnswers.map((value, index) => (index === current ? optionIndex : value)));
 
-    window.setTimeout(() => {
+    if (nextTimerRef.current) window.clearTimeout(nextTimerRef.current);
+    nextTimerRef.current = window.setTimeout(() => {
       if (current < questions.length - 1) {
         setCurrent((value) => value + 1);
         return;
       }
 
       setIsAnalyzing(true);
-      window.setTimeout(() => {
+      if (analyzeTimerRef.current) window.clearTimeout(analyzeTimerRef.current);
+      analyzeTimerRef.current = window.setTimeout(() => {
         setIsAnalyzing(false);
         setDone(true);
       }, 1250);
@@ -59,6 +71,14 @@ export function QuizDiagnosis({ title, description, questions, results }: Props)
     setCurrent((value) => Math.max(0, value - 1));
   }
 
+  function restart() {
+    setAnswers(Array(questions.length).fill(null));
+    setCurrent(0);
+    setDone(false);
+    setIsAnalyzing(false);
+    setStarted(false);
+  }
+
   return (
     <div className="space-y-5">
       <section className="soft-card overflow-hidden">
@@ -68,14 +88,39 @@ export function QuizDiagnosis({ title, description, questions, results }: Props)
           <p className="mt-2 text-sm leading-7 text-plum/70">{description}</p>
         </div>
 
-        <div className="mt-5 h-2 overflow-hidden rounded-full bg-paper">
-          <div className="quiz-progress h-full rounded-full bg-gradient-to-r from-orchid to-roseglow transition-all duration-500" style={{ width: `${progress}%` }} />
-        </div>
-        <p className="mt-2 text-xs font-bold text-plum/55">
-          {answeredCount} / {questions.length} 回答済み
-        </p>
+        {!started && !done && !isAnalyzing && (
+          <div className="diagnosis-start mt-6 rounded-lg bg-paper p-6 text-center">
+            <div className="diagnosis-rings mx-auto" aria-hidden>
+              <span />
+              <span />
+              <span />
+            </div>
+            <div className="diagnosis-crystal mx-auto">
+              <Sparkles size={34} aria-hidden />
+            </div>
+            <h3 className="mt-4 text-xl font-black text-plum">診断を始める</h3>
+            <p className="mx-auto mt-2 max-w-xl text-sm leading-7 text-plum/70">
+              質問に答えたあと、鑑定中の演出を挟んで結果カードを表示します。
+            </p>
+            <button className="btn-primary mt-5" type="button" onClick={() => setStarted(true)}>
+              <Sparkles size={16} aria-hidden />
+              最初の質問へ
+            </button>
+          </div>
+        )}
 
-        {!done && !isAnalyzing && (
+        {started && (
+          <>
+            <div className="mt-5 h-2 overflow-hidden rounded-full bg-paper">
+              <div className="quiz-progress h-full rounded-full bg-gradient-to-r from-orchid to-roseglow transition-all duration-500" style={{ width: `${progress}%` }} />
+            </div>
+            <p className="mt-2 text-xs font-bold text-plum/55">
+              {answeredCount} / {questions.length} 回答済み
+            </p>
+          </>
+        )}
+
+        {started && !done && !isAnalyzing && (
           <div className="quiz-slide mt-6" key={current}>
             <div className="rounded-lg bg-paper p-5">
               <p className="kicker">QUESTION {current + 1}</p>
@@ -136,6 +181,9 @@ export function QuizDiagnosis({ title, description, questions, results }: Props)
             <p className="leading-7">
               今日のヒントは、結果を決めつけるものではなく、自分の気持ちを眺める鏡としてお楽しみください。
             </p>
+            <button className="btn-secondary mt-4" type="button" onClick={restart}>
+              もう一度診断する
+            </button>
           </ResultCard>
         </div>
       )}

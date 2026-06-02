@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { Sparkles } from "lucide-react";
 import { ShareButtons } from "@/components/ShareButtons";
 import { zodiacSigns } from "@/lib/content";
 import { scoreFromSeed } from "@/lib/fortune";
@@ -37,6 +38,9 @@ export function CompatibilityForm() {
   const [partnerSign, setPartnerSign] = useState(zodiacSigns[1]?.slug ?? "taurus");
   const [relationship, setRelationship] = useState("love");
   const [submitted, setSubmitted] = useState<Result | null>(null);
+  const [pending, setPending] = useState<Result | null>(null);
+  const [isReading, setIsReading] = useState(false);
+  const timerRef = useRef<number | null>(null);
 
   const scores = useMemo(() => {
     if (!submitted) return null;
@@ -49,13 +53,31 @@ export function CompatibilityForm() {
     };
   }, [submitted]);
 
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) window.clearTimeout(timerRef.current);
+    };
+  }, []);
+
+  function submitCompatibility() {
+    if (timerRef.current) window.clearTimeout(timerRef.current);
+    const next = { you, partner, yourSign, partnerSign, relationship };
+    setSubmitted(null);
+    setPending(next);
+    setIsReading(true);
+    timerRef.current = window.setTimeout(() => {
+      setSubmitted(next);
+      setIsReading(false);
+    }, 1250);
+  }
+
   return (
     <div className="space-y-5">
       <form
         className="soft-card space-y-4"
         onSubmit={(event) => {
           event.preventDefault();
-          setSubmitted({ you, partner, yourSign, partnerSign, relationship });
+          submitCompatibility();
         }}
       >
         <div className="grid gap-3 sm:grid-cols-2">
@@ -100,13 +122,34 @@ export function CompatibilityForm() {
             </select>
           </label>
         </div>
-        <button className="btn-primary w-full sm:w-auto" type="submit">
-          相性をみる
+        <button className="btn-primary w-full sm:w-auto" type="submit" disabled={isReading}>
+          <Sparkles size={16} className={isReading ? "animate-pulse" : ""} aria-hidden />
+          {isReading ? "相性を読み込み中..." : "相性をみる"}
         </button>
       </form>
 
+      {isReading && pending && (
+        <section className="compatibility-reading soft-card text-center">
+          <div className="diagnosis-rings mx-auto" aria-hidden>
+            <span />
+            <span />
+            <span />
+          </div>
+          <div className="diagnosis-crystal mx-auto">
+            <Sparkles size={34} aria-hidden />
+          </div>
+          <p className="kicker mt-4">COMPATIBILITY READING</p>
+          <h2 className="mt-2 text-2xl font-black text-plum">
+            {pending.you}さんと{pending.partner}さんの流れを読んでいます
+          </h2>
+          <p className="mx-auto mt-2 max-w-xl text-sm leading-7 text-plum/70">
+            星座、関係性、今日の空気感を重ねて、会話・ペース・ときめきのバランスを読み取っています。
+          </p>
+        </section>
+      )}
+
       {submitted && scores && (
-        <section className="result-card result-card-hero space-y-5">
+        <section className="result-card result-card-hero result-pop result-pop-luminous space-y-5">
           <div>
             <p className="kicker">COMPATIBILITY</p>
             <h2 className="mt-2 text-3xl font-black text-white">

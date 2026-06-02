@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { AdSlot } from "@/components/AdSlot";
 import { AffiliateCards } from "@/components/AffiliateCards";
 import { TodayReturnCta } from "@/components/CTABlocks";
+import { FortuneRevealGate } from "@/components/FortuneRevealGate";
 import { JsonLd } from "@/components/JsonLd";
 import { PageHero } from "@/components/PageHero";
 import { ShareButtons } from "@/components/ShareButtons";
@@ -47,47 +48,56 @@ export default async function ZodiacDetailPage({ params }: Props) {
         ])}
       />
       <PageHero
-        kicker={`${todayKey()} / ${fortune.rank}位`}
+        kicker={todayKey()}
         title={`${sign.name}の今日の運勢`}
-        description={`${fortune.score}点。${fortune.message}`}
+        description="今日のランキング、総合スコア、恋愛運、仕事運、金運、健康運は、星を読み込んでから表示します。"
       />
-      <article className="soft-card space-y-5">
-        <div className="grid gap-3 sm:grid-cols-3">
-          <div className="rounded-lg bg-paper p-4">
-            <p className="kicker">RANK</p>
-            <p className="mt-2 text-3xl font-black text-orchid">{fortune.rank}位</p>
+      <FortuneRevealGate
+        kicker="ZODIAC REVEAL"
+        title={`${sign.name}の星を読む`}
+        description="ボタンを押すと、今日の順位とスコアを演出つきで表示します。"
+        buttonLabel="この星座の結果を見る"
+        readingLabel={`${sign.name}の星を読み込んでいます...`}
+        variant="zodiac"
+      >
+        <article className="space-y-5">
+          <div className="grid gap-3 sm:grid-cols-3">
+            <div className="rounded-lg bg-paper p-4">
+              <p className="kicker">RANK</p>
+              <p className="mt-2 text-3xl font-black text-orchid">{fortune.rank}位</p>
+            </div>
+            <div className="rounded-lg bg-paper p-4">
+              <p className="kicker">SCORE</p>
+              <p className="mt-2 text-3xl font-black text-orchid">{fortune.score}点</p>
+            </div>
+            <div className="rounded-lg bg-paper p-4">
+              <p className="kicker">LUCKY</p>
+              <p className="mt-2 font-bold text-plum">{fortune.luckyColor}</p>
+              <p className="text-sm text-plum/70">{fortune.luckyItem}</p>
+            </div>
           </div>
-          <div className="rounded-lg bg-paper p-4">
-            <p className="kicker">SCORE</p>
-            <p className="mt-2 text-3xl font-black text-orchid">{fortune.score}点</p>
+          <p className="text-lg leading-8">{fortune.total}</p>
+          <div className="grid gap-3 sm:grid-cols-2">
+            <div className="rounded-lg bg-paper p-4">
+              <strong>恋愛運</strong>
+              <p className="mt-2">{fortune.love}</p>
+            </div>
+            <div className="rounded-lg bg-paper p-4">
+              <strong>仕事運</strong>
+              <p className="mt-2">{fortune.work}</p>
+            </div>
+            <div className="rounded-lg bg-paper p-4">
+              <strong>金運</strong>
+              <p className="mt-2">{fortune.money}</p>
+            </div>
+            <div className="rounded-lg bg-paper p-4">
+              <strong>健康運</strong>
+              <p className="mt-2">{fortune.wellness}</p>
+            </div>
           </div>
-          <div className="rounded-lg bg-paper p-4">
-            <p className="kicker">LUCKY</p>
-            <p className="mt-2 font-bold text-plum">{fortune.luckyColor}</p>
-            <p className="text-sm text-plum/70">{fortune.luckyItem}</p>
-          </div>
-        </div>
-        <p className="text-lg leading-8">{fortune.total}</p>
-        <div className="grid gap-3 sm:grid-cols-2">
-          <div className="rounded-lg bg-paper p-4">
-            <strong>恋愛運</strong>
-            <p className="mt-2">{fortune.love}</p>
-          </div>
-          <div className="rounded-lg bg-paper p-4">
-            <strong>仕事運</strong>
-            <p className="mt-2">{fortune.work}</p>
-          </div>
-          <div className="rounded-lg bg-paper p-4">
-            <strong>金運</strong>
-            <p className="mt-2">{fortune.money}</p>
-          </div>
-          <div className="rounded-lg bg-paper p-4">
-            <strong>健康運</strong>
-            <p className="mt-2">{fortune.wellness}</p>
-          </div>
-        </div>
-        <ShareButtons title={`${sign.name}の今日の運勢`} text={`${fortune.rank}位・${fortune.score}点。${fortune.message}`} />
-      </article>
+          <ShareButtons title={`${sign.name}の今日の運勢`} text={`${fortune.rank}位・${fortune.score}点。${fortune.message}`} />
+        </article>
+      </FortuneRevealGate>
       <AdSlot placement="result-bottom" />
       <AffiliateCards />
       <TodayReturnCta />

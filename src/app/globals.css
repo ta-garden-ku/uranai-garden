@@ -758,6 +758,112 @@ a {
   opacity: 0.74;
 }
 
+.fortune-reveal {
+  position: relative;
+  isolation: isolate;
+}
+
+.fortune-reveal-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 20% 16%, rgba(244, 201, 93, 0.18), transparent 28%),
+    radial-gradient(circle at 82% 26%, rgba(168, 85, 247, 0.14), transparent 32%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.82), rgba(255, 248, 242, 0.72));
+}
+
+.fortune-reveal-bg span {
+  position: absolute;
+  width: 11px;
+  height: 11px;
+  border-radius: 999px;
+  background: #f4c95d;
+  box-shadow: 0 0 22px rgba(244, 201, 93, 0.8);
+  opacity: 0.48;
+  animation: fortune-dot-float 1.4s ease-in-out infinite alternate;
+}
+
+.fortune-reveal-bg span:nth-child(1) {
+  left: 16%;
+  top: 20%;
+}
+
+.fortune-reveal-bg span:nth-child(2) {
+  right: 18%;
+  top: 34%;
+  animation-delay: 0.16s;
+}
+
+.fortune-reveal-bg span:nth-child(3) {
+  left: 48%;
+  bottom: 18%;
+  animation-delay: 0.32s;
+}
+
+.fortune-reveal-cover {
+  display: grid;
+  min-height: 300px;
+  place-items: center;
+  text-align: center;
+}
+
+.fortune-reveal-orb {
+  position: relative;
+  display: grid;
+  width: 116px;
+  height: 116px;
+  place-items: center;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 38% 28%, rgba(255, 255, 255, 0.92), transparent 28%),
+    linear-gradient(145deg, rgba(244, 201, 93, 0.36), rgba(168, 85, 247, 0.24));
+  color: #4b235f;
+  box-shadow:
+    0 18px 42px rgba(75, 35, 95, 0.16),
+    inset 0 0 28px rgba(255, 255, 255, 0.45);
+  animation: fortune-orb-breathe 1.8s ease-in-out infinite alternate;
+}
+
+.fortune-reveal-orb::before,
+.fortune-reveal-orb::after {
+  content: "";
+  position: absolute;
+  inset: -14px;
+  border: 2px solid rgba(244, 201, 93, 0.42);
+  border-radius: 999px;
+  animation: fortune-ring-pulse 1.2s ease-in-out infinite;
+}
+
+.fortune-reveal-orb::after {
+  inset: -28px;
+  border-color: rgba(168, 85, 247, 0.2);
+  animation-delay: 0.2s;
+}
+
+.fortune-reveal.phase-reading .fortune-reveal-orb {
+  animation: fortune-orb-read 0.7s ease-in-out infinite alternate;
+}
+
+.fortune-reveal-content {
+  position: relative;
+}
+
+.dream-search-stage {
+  min-height: 240px;
+}
+
+.dream-search-stage.phase-reading {
+  animation: matchday-card-pulse 0.8s ease-in-out infinite alternate;
+}
+
+.dream-reading {
+  display: grid;
+  min-height: 220px;
+  place-items: center;
+}
+
 .matchday-stage {
   position: relative;
   min-height: 430px;
@@ -1921,6 +2027,48 @@ a {
   }
 }
 
+@keyframes fortune-dot-float {
+  from {
+    opacity: 0.28;
+    transform: translateY(8px) scale(0.72);
+  }
+  to {
+    opacity: 0.9;
+    transform: translateY(-10px) scale(1.16);
+  }
+}
+
+@keyframes fortune-orb-breathe {
+  from {
+    transform: translateY(4px) rotate(-2deg) scale(0.98);
+  }
+  to {
+    transform: translateY(-7px) rotate(2deg) scale(1.04);
+  }
+}
+
+@keyframes fortune-orb-read {
+  from {
+    transform: translateY(2px) rotate(-6deg) scale(1);
+    filter: saturate(1);
+  }
+  to {
+    transform: translateY(-9px) rotate(8deg) scale(1.08);
+    filter: saturate(1.22);
+  }
+}
+
+@keyframes fortune-ring-pulse {
+  from {
+    opacity: 0.68;
+    transform: scale(0.78);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.22);
+  }
+}
+
 @keyframes daily-star-pulse {
   from {
     opacity: 0.36;
@@ -2051,6 +2199,12 @@ a {
   .matchday-result-card,
   .team-reveal-result,
   .team-reveal-card.phase-reading,
+  .fortune-reveal-bg span,
+  .fortune-reveal-orb,
+  .fortune-reveal-orb::before,
+  .fortune-reveal-orb::after,
+  .fortune-reveal.phase-reading .fortune-reveal-orb,
+  .dream-search-stage.phase-reading,
   .daily-oracle-bg span,
   .daily-zodiac-ring.is-reading,
   .daily-crystal,

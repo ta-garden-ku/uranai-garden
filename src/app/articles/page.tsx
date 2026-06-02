@@ -3,6 +3,7 @@ import { AdSlot } from "@/components/AdSlot";
 import { PageHero } from "@/components/PageHero";
 import { articles, articleThemes, categories } from "@/lib/content";
 import { buildMetadata } from "@/lib/seo";
+import { siteConfig } from "@/lib/site";
 
 export const metadata = buildMetadata({
   title: "記事一覧｜占いサイトのSEO・収益化・比較記事テンプレート",
@@ -11,24 +12,39 @@ export const metadata = buildMetadata({
 });
 
 export default function ArticlesPage() {
+  const visibleCategories = siteConfig.adsenseReviewMode
+    ? categories.filter((category) => category.slug !== "affiliate" && category.slug !== "monetization")
+    : categories;
+  const visibleThemes = siteConfig.adsenseReviewMode
+    ? articleThemes.filter((theme) => theme.slug !== "lucky-goods")
+    : articleThemes;
+  const visibleArticles = siteConfig.adsenseReviewMode
+    ? articles.filter(
+        (article) =>
+          article.category !== "affiliate" &&
+          article.category !== "monetization" &&
+          !article.tags.includes("PR")
+      )
+    : articles;
+
   return (
     <main className="page-shell space-y-8">
       <PageHero kicker="ARTICLES" title="記事一覧" description="検索流入と収益化を狙うための初期記事テンプレートです。" />
       <AdSlot placement="article-top" />
       <section className="flex flex-wrap gap-2">
-        {categories.map((category) => (
+        {visibleCategories.map((category) => (
           <Link key={category.slug} className="btn-secondary" href={`/categories/${category.slug}`}>
             {category.name}
           </Link>
         ))}
-        {articleThemes.map((theme) => (
+        {visibleThemes.map((theme) => (
           <Link key={theme.slug} className="btn-secondary" href={`/articles/category/${theme.slug}`}>
             {theme.name}
           </Link>
         ))}
       </section>
       <section className="grid gap-4 sm:grid-cols-2">
-        {articles.map((article) => (
+        {visibleArticles.map((article) => (
           <Link key={article.slug} className="soft-card" href={`/articles/${article.slug}`}>
             <p className="kicker">{article.category} / {article.readingMinutes}分</p>
             <h2 className="mt-2 text-2xl font-bold text-plum">{article.title}</h2>

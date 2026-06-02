@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ChevronRight, Flame } from "lucide-react";
 import { articles } from "@/lib/content";
-import { popularLinks } from "@/lib/site";
+import { popularLinks, siteConfig } from "@/lib/site";
 
 export function PopularContent() {
   return (
@@ -28,9 +28,17 @@ export function PopularContent() {
 
 export function RelatedArticles({ currentSlug }: { currentSlug?: string }) {
   const current = articles.find((article) => article.slug === currentSlug);
+  const reviewSafeArticles = siteConfig.adsenseReviewMode
+    ? articles.filter(
+        (article) =>
+          article.category !== "affiliate" &&
+          article.category !== "monetization" &&
+          !article.tags.includes("PR")
+      )
+    : articles;
   const items = current
-    ? current.related.map((slug) => articles.find((article) => article.slug === slug)).filter(Boolean)
-    : articles.slice(0, 3);
+    ? current.related.map((slug) => reviewSafeArticles.find((article) => article.slug === slug)).filter(Boolean)
+    : reviewSafeArticles.slice(0, 3);
 
   return (
     <section className="space-y-3">
